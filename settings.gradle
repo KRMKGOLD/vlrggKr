@@ -14,5 +14,3 @@ dependencyResolutionManagement {
 }
 rootProject.name = "vlrggKr"
 include ':app'
-include ':feature'
-include ':core'
