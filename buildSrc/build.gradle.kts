@@ -7,15 +7,8 @@ repositories {
     mavenCentral()
 }
 
-object PluginVersion {
-
-    const val gradle = "7.0.3"
-    const val kotlin = "1.7.10"
-}
-
 dependencies {
 
-    implementation("com.android.tools.build:gradle:${PluginVersion.gradle}")
-    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:${PluginVersion.kotlin}")
+    implementation("com.android.tools.build:gradle:7.2.1")
+    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.10")
 }
-

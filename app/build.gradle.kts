@@ -2,20 +2,18 @@ import kr.co.cotton.buildsrc.DependencyInfo
 
 plugins {
     id("com.android.application")
-
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
-
     id("com.google.dagger.hilt.android") version "2.44"
 }
 
 android {
-    compileSdk = 33
+    compileSdk = 32
 
     defaultConfig {
         applicationId = "kr.co.cotton.vlrggaos"
         minSdk = 23
-        targetSdk = 33
+        targetSdk = 32
         vectorDrawables.useSupportLibrary = true
         versionCode = 1
         versionName = "1.0.0"
