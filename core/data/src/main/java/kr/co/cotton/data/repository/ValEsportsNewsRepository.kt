@@ -5,5 +5,7 @@ import kr.co.cotton.data.model.ValEsportsNews
 
 interface ValEsportsNewsRepository {
 
-    fun getValEsportsNews() : Flow<List<ValEsportsNews>>
+    fun getNewsMaxIndex(): Flow<Int>
+
+    fun getValEsportsNews(page: Int): Flow<List<ValEsportsNews>>
 }

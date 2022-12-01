@@ -9,7 +9,11 @@ class DefaultValEsportsNewsRepository @Inject constructor(
     private val remoteValEsportsNewsDataSource: ValEsportsNewsDataSource
 ) : ValEsportsNewsRepository {
 
-    override fun getValEsportsNews(): Flow<List<ValEsportsNews>> {
-        return remoteValEsportsNewsDataSource.getValEsportsNews()
+    override fun getNewsMaxIndex(): Flow<Int> {
+        return remoteValEsportsNewsDataSource.getNewsMaxIndex()
+    }
+
+    override fun getValEsportsNews(page: Int): Flow<List<ValEsportsNews>> {
+        return remoteValEsportsNewsDataSource.getValEsportsNews(page)
     }
 }
