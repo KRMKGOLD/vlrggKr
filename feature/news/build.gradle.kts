@@ -1,47 +1,42 @@
 import kr.co.cotton.buildsrc.DependencyInfo
 
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
 }
 
 android {
-    compileSdk = 33
+    compileSdk = 32
 
     defaultConfig {
-        applicationId = "kr.co.cotton.vlrggaos"
         minSdk = 23
-        targetSdk = 33
-        vectorDrawables.useSupportLibrary = true
-        versionCode = 1
-        versionName = "1.0.0"
+        targetSdk = 32
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
+        vectorDrawables {
+            useSupportLibrary = true
+        }
     }
 
     buildTypes {
-        getByName("release") {
+        release {
             isMinifyEnabled = false
             proguardFiles(
-                getDefaultProguardFile(
-                    "proguard-android-optimize.txt"
-                ),
+                getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
         }
     }
-
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+        jvmTarget = "1.8"
     }
-
     buildFeatures {
         compose = true
     }
@@ -56,6 +51,8 @@ android {
 }
 
 dependencies {
+
+    implementation(project(":app"))
 
     implementation(DependencyInfo.AndroidX.ktx)
     implementation(DependencyInfo.AndroidX.appCompat)
