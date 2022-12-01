@@ -1,8 +1,8 @@
-package kr.co.cotton.data.repository
+package kr.co.cotton.data.sportsnews.repository
 
 import kotlinx.coroutines.flow.Flow
-import kr.co.cotton.data.datasource.ValEsportsNewsDataSource
-import kr.co.cotton.data.model.ValEsportsNews
+import kr.co.cotton.data.sportsnews.datasource.ValEsportsNewsDataSource
+import kr.co.cotton.data.sportsnews.ValEsportsNews
 import javax.inject.Inject
 
 class DefaultValEsportsNewsRepository @Inject constructor(
