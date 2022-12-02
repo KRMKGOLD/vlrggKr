@@ -8,6 +8,8 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import kr.co.cotton.data.sportsnews.ValEsportsNews
 import kr.co.cotton.data.sportsnews.repository.ValEsportsNewsRepository
+import kr.co.cotton.vlrggaos.Result
+import kr.co.cotton.vlrggaos.asResult
 import kr.co.cotton.vlrggaos.base.BaseViewModel
 import javax.inject.Inject
 
@@ -15,6 +17,9 @@ import javax.inject.Inject
 class NewsViewModel @Inject constructor(
     private val newsRepository: ValEsportsNewsRepository
 ) : BaseViewModel() {
+
+    private val _newsUiState = MutableStateFlow<NewsUiState>(NewsUiState.Loading)
+    val newsUiState: StateFlow<NewsUiState> = _newsUiState
 
     private val _newsMaxIndex = MutableLiveData(0)
     val newsMaxIndex: LiveData<Int> = _newsMaxIndex
@@ -29,11 +34,19 @@ class NewsViewModel @Inject constructor(
     private fun getNewsMaxIndex() = viewModelScope.launch {
         _isLoading.value = true
 
-        newsRepository.getNewsMaxIndex().onCompletion {
-            _isLoading.value = false
-        }.collectLatest {
-            _newsMaxIndex.postValue(it)
-        }
+        newsRepository.getNewsMaxIndex().asResult()
+            .map { maxIdxResult ->
+                when (maxIdxResult) {
+                    is Result.Success -> {
+                        _newsMaxIndex.value = maxIdxResult.data
+                        getValEsportsNews(1)
+                    }
+                    is Result.Error -> {
+                        // TODO : ERROR DIALOG
+                    }
+                    is Result.Loading -> _newsUiState.value = NewsUiState.Error
+                }
+            }
     }
 
     /**
@@ -44,11 +57,20 @@ class NewsViewModel @Inject constructor(
         if (index > (_newsMaxIndex.value ?: 0)) {
             // TODO : IndexOutOfException
         } else {
-            newsRepository.getValEsportsNews(index).onCompletion {
-                _isLoading.value = false
-            }.collectLatest {
-                _newsList.postValue(it)
-            }
+            newsRepository.getValEsportsNews(index).asResult()
+                .map { newsResult ->
+                    when (newsResult) {
+                        is Result.Success -> NewsUiState.Success(newsResult.data)
+                        is Result.Error -> NewsUiState.Error
+                        is Result.Loading -> NewsUiState.Loading
+                    }
+                }
         }
     }
+}
+
+sealed interface NewsUiState {
+    data class Success(val news: List<ValEsportsNews>) : NewsUiState
+    object Error : NewsUiState
+    object Loading : NewsUiState
 }

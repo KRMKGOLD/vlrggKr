@@ -65,6 +65,8 @@ dependencies {
     implementation(DependencyInfo.AndroidX.Compose.compose)
     debugImplementation(DependencyInfo.AndroidX.Compose.tool)
     debugImplementation(DependencyInfo.AndroidX.Compose.manifest)
+    debugImplementation(DependencyInfo.AndroidX.Compose.lifecycle)
+    debugImplementation(DependencyInfo.AndroidX.Compose.lifecycleViewModel)
 
     testImplementation(DependencyInfo.Test.junit)
     androidTestImplementation(DependencyInfo.AndroidX.junit)
@@ -72,6 +74,7 @@ dependencies {
     androidTestImplementation(DependencyInfo.AndroidX.Compose.test)
 
     implementation(DependencyInfo.Hilt.hilt)
+    implementation(DependencyInfo.Hilt.compose)
     kapt(DependencyInfo.Hilt.compiler)
 
     implementation(DependencyInfo.Glide.glide)

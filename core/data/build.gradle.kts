@@ -43,5 +43,6 @@ dependencies {
     implementation(DependencyInfo.Jsoup.jsoup)
 
     implementation(DependencyInfo.Hilt.hilt)
+    implementation(DependencyInfo.Hilt.compose)
     kapt(DependencyInfo.Hilt.compiler)
 }

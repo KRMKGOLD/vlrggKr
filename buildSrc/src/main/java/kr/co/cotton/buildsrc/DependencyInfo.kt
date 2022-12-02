@@ -5,7 +5,7 @@ object DependencyInfo {
     object AndroidX {
 
         const val ktx = "androidx.core:core-ktx:1.9.0"
-        const val lifeCycleRuntime = "androidx.lifecycle:lifecycle-runtime-ktx:2.5.1"
+        const val lifeCycleRuntime = "androidx.lifecycle:lifecycle-runtime-ktx:alpha03"
         const val appCompat = "androidx.appcompat:appcompat:1.5.1"
         const val junit = "androidx.test.ext:junit:1.1.4"
         const val espresso = "androidx.test.espresso:espresso-core:3.5.0"
@@ -21,6 +21,9 @@ object DependencyInfo {
             const val test = "androidx.compose.ui:ui-test-junit4:$version"
             const val tool = "androidx.compose.ui:ui-tooling:$version"
             const val manifest = "androidx.compose.ui:ui-test-manifest:$version"
+
+            const val lifecycle = "androidx.lifecycle:lifecycle-runtime-compose:2.6.0-alpha03"
+            const val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewModel-compose:2.6.0-alpha03"
         }
     }
 
@@ -40,6 +43,7 @@ object DependencyInfo {
 
         const val hilt = "com.google.dagger:hilt-android:$version"
         const val compiler = "com.google.dagger:hilt-compiler:$version"
+        const val compose = "androidx.hilt:hilt-navigation-compose:1.0.0"
     }
 
     object Glide {

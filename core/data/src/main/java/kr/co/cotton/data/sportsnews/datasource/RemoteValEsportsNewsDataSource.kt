@@ -20,7 +20,7 @@ class RemoteValEsportsNewsDataSource @Inject constructor() : ValEsportsNewsDataS
 
             emit(maxIndex)
         } catch (e: Exception) {
-            e.printStackTrace()
+            throw e
         }
     }.flowOn(Dispatchers.IO)
 
@@ -32,7 +32,7 @@ class RemoteValEsportsNewsDataSource @Inject constructor() : ValEsportsNewsDataS
 
             emit(valEsportsNews)
         } catch (e: Exception) {
-            e.printStackTrace()
+            throw e
         }
     }.flowOn(Dispatchers.IO)
 
