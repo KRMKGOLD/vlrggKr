@@ -53,6 +53,7 @@ android {
 dependencies {
 
     implementation(project(":app"))
+    implementation(project(":core:data"))
 
     implementation(DependencyInfo.AndroidX.ktx)
     implementation(DependencyInfo.AndroidX.appCompat)

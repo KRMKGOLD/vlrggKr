@@ -5,6 +5,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 
 open class BaseViewModel : ViewModel() {
 
-    protected val isLoading = MutableStateFlow(false)
+    protected val _isLoading = MutableStateFlow(false)
 
 }
