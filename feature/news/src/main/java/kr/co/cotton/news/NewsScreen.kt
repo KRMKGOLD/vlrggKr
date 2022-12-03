@@ -1,6 +1,5 @@
 package kr.co.cotton.news
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -37,7 +36,8 @@ internal fun NewsRoute(
     NewsScreen(
         modifier = modifier,
         newsUiState = newsUiState,
-        onClickBack = onClickBack
+        onClickBack = onClickBack,
+        onClickItem = { viewModel.onClickNewsItem(it) }
     )
 }
 
@@ -45,23 +45,37 @@ internal fun NewsRoute(
 fun NewsScreen(
     modifier: Modifier = Modifier,
     newsUiState: NewsUiState,
-    onClickBack: () -> Unit
+    onClickBack: () -> Unit,
+    onClickItem: (ValEsportsNews) -> Unit
 ) {
-    val scrollableState = rememberLazyListState()
+    val state = rememberLazyListState()
 
     LazyColumn(
         modifier = modifier,
-        horizontalAlignment = Alignment.CenterHorizontally,
-        state = scrollableState
+        state = state,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-
+        when (newsUiState) {
+            is NewsUiState.Success -> {
+                items(newsUiState.news) { news ->
+                    NewsCard(news = news)
+                }
+            }
+            else -> {
+                // TODO : Make VlrGGLoadingView
+            }
+//            is NewsUiState.Error -> TODO()
+//            is NewsUiState.Loading -> {
+//                // TODO : Make VlrGGLoadingView
+//            }
+        }
     }
 }
 
 @Composable
 fun NewsCard(
     modifier: Modifier = Modifier,
-    uiState: ValEsportsNews,
+    news: ValEsportsNews,
     onClickCard: () -> Unit = {}
 ) {
     Card {
@@ -72,7 +86,7 @@ fun NewsCard(
         ) {
             Text(
                 modifier = Modifier.fillMaxWidth(),
-                text = uiState.title.orEmpty(),
+                text = news.title.orEmpty(),
                 style = MaterialTheme.typography.h6,
                 color = Color.Black,
             )
@@ -80,7 +94,7 @@ fun NewsCard(
                 modifier = Modifier
                     .padding(top = 4.dp)
                     .fillMaxWidth(),
-                text = uiState.description.orEmpty(),
+                text = news.description.orEmpty(),
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis,
                 style = MaterialTheme.typography.subtitle2,
@@ -93,13 +107,13 @@ fun NewsCard(
             ) {
                 Text(
                     modifier = Modifier,
-                    text = uiState.date.orEmpty(),
+                    text = news.date.orEmpty(),
                     color = Color.Gray,
                     style = MaterialTheme.typography.caption
                 )
                 Text(
                     modifier = Modifier.padding(start = 4.dp),
-                    text = uiState.writer.orEmpty(),
+                    text = news.writer.orEmpty(),
                     color = Color.Gray,
                     style = MaterialTheme.typography.caption
                 )
@@ -112,7 +126,7 @@ fun NewsCard(
 @Composable
 fun NewsCardPreview() {
     NewsCard(
-        uiState = ValEsportsNews(
+        news = ValEsportsNews(
             title = "Gen.G reveal all-Korean roster",
             description = "VLR.gg's roster tracker keeps up to date on roster moves in the Pacific region in view of the upcome asdfasdfasdfasdfasdfasdfasdf",
             flagISO = "KR",

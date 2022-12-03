@@ -67,6 +67,10 @@ class NewsViewModel @Inject constructor(
                 }
         }
     }
+
+    fun onClickNewsItem(news: ValEsportsNews) {
+        // TODO : Click News
+    }
 }
 
 sealed interface NewsUiState {
