@@ -23,7 +23,7 @@ object DependencyInfo {
             const val manifest = "androidx.compose.ui:ui-test-manifest:$version"
 
             const val lifecycle = "androidx.lifecycle:lifecycle-runtime-compose:2.6.0-alpha03"
-            const val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewModel-compose:2.6.0-alpha03"
+            const val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-compose:2.6.0-alpha03"
         }
     }
 
