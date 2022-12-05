@@ -20,5 +20,8 @@ dependencyResolutionManagement {
 }
 rootProject.name = "vlrggKr"
 include ':app'
+
 include ':core:data'
+include ':core:designsystem'
+
 include ':feature:news'
