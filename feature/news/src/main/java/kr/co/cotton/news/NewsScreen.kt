@@ -26,7 +26,6 @@ import kr.co.cotton.designsystem.component.CottonLoadingView
 @Composable
 internal fun NewsRoute(
     modifier: Modifier = Modifier,
-    onClickBack: () -> Unit,
     viewModel: NewsViewModel = hiltViewModel()
 ) {
     val newsUiState: NewsUiState by viewModel.newsUiState.collectAsStateWithLifecycle()
@@ -34,7 +33,7 @@ internal fun NewsRoute(
     NewsScreen(
         modifier = modifier,
         newsUiState = newsUiState,
-        onClickBack = onClickBack,
+        onClickBack = { viewModel.onClickBack() },
         onClickItem = { viewModel.onClickNewsItem(it) }
     )
 }

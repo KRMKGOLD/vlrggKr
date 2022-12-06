@@ -1,7 +1,7 @@
 package kr.co.cotton.vlrggaos
 
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kr.co.cotton.vlrggaos.base.BaseViewModel
+import kr.co.cotton.common.base.BaseViewModel
 import javax.inject.Inject
 
 @HiltViewModel

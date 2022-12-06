@@ -6,11 +6,11 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import kr.co.cotton.common.Result
+import kr.co.cotton.common.asResult
 import kr.co.cotton.data.sportsnews.ValEsportsNews
 import kr.co.cotton.data.sportsnews.repository.ValEsportsNewsRepository
-import kr.co.cotton.vlrggaos.Result
-import kr.co.cotton.vlrggaos.asResult
-import kr.co.cotton.vlrggaos.base.BaseViewModel
+import kr.co.cotton.common.base.BaseViewModel
 import javax.inject.Inject
 
 @HiltViewModel
@@ -42,9 +42,9 @@ class NewsViewModel @Inject constructor(
                         getValEsportsNews(1)
                     }
                     is Result.Error -> {
-                        // TODO : ERROR DIALOG
+                        _newsUiState.value = NewsUiState.Error
                     }
-                    is Result.Loading -> _newsUiState.value = NewsUiState.Error
+                    is Result.Loading -> _newsUiState.value = NewsUiState.Loading
                 }
             }
     }
@@ -70,6 +70,10 @@ class NewsViewModel @Inject constructor(
 
     fun onClickNewsItem(news: ValEsportsNews) {
         // TODO : Click News
+    }
+
+    fun onClickBack() {
+        // TODO : Click Back Btn
     }
 }
 

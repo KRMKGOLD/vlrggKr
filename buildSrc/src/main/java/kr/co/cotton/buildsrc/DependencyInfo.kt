@@ -22,8 +22,10 @@ object DependencyInfo {
             const val tool = "androidx.compose.ui:ui-tooling:$version"
             const val manifest = "androidx.compose.ui:ui-test-manifest:$version"
 
+            const val navigation = "androidx.navigation:navigation-compose:2.5.3"
             const val lifecycle = "androidx.lifecycle:lifecycle-runtime-compose:2.6.0-alpha03"
-            const val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-compose:2.6.0-alpha03"
+            const val lifecycleViewModel =
+                "androidx.lifecycle:lifecycle-viewmodel-compose:2.6.0-alpha03"
         }
     }
 

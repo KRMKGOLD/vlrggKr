@@ -1,4 +1,4 @@
-package kr.co.cotton.vlrggaos
+package kr.co.cotton.common
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch

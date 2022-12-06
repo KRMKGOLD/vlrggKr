@@ -57,6 +57,11 @@ android {
 
 dependencies {
 
+    implementation(project(":core:common"))
+    implementation(project(":core:data"))
+
+    implementation(project(":feature:news"))
+
     implementation(DependencyInfo.AndroidX.ktx)
     implementation(DependencyInfo.AndroidX.appCompat)
     implementation(DependencyInfo.AndroidX.lifeCycleRuntime)
@@ -67,6 +72,7 @@ dependencies {
     implementation(DependencyInfo.AndroidX.Compose.compose)
     debugImplementation(DependencyInfo.AndroidX.Compose.tool)
     debugImplementation(DependencyInfo.AndroidX.Compose.manifest)
+    debugImplementation(DependencyInfo.AndroidX.Compose.navigation)
     debugImplementation(DependencyInfo.AndroidX.Compose.lifecycle)
     debugImplementation(DependencyInfo.AndroidX.Compose.lifecycleViewModel)
 

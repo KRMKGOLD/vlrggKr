@@ -1,4 +1,4 @@
-package kr.co.cotton.vlrggaos.base
+package kr.co.cotton.common.base
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
