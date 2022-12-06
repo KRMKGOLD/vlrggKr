@@ -1,10 +1,7 @@
 package kr.co.cotton.news
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -23,6 +20,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import kr.co.cotton.data.sportsnews.ValEsportsNews
+import kr.co.cotton.designsystem.component.CottonLoadingView
 
 @OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
@@ -50,25 +48,30 @@ fun NewsScreen(
 ) {
     val state = rememberLazyListState()
 
-    LazyColumn(
-        modifier = modifier,
-        state = state,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        when (newsUiState) {
-            is NewsUiState.Success -> {
+    when (newsUiState) {
+        is NewsUiState.Success -> {
+            LazyColumn(
+                modifier = modifier,
+                state = state,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
                 items(newsUiState.news) { news ->
-                    NewsCard(news = news)
+                    NewsCard(
+                        modifier = Modifier.padding(top = 16.dp, start = 16.dp, end = 16.dp),
+                        news = news
+                    )
                 }
             }
-            else -> {
-                // TODO : Make VlrGGLoadingView
-            }
-//            is NewsUiState.Error -> TODO()
-//            is NewsUiState.Loading -> {
-//                // TODO : Make VlrGGLoadingView
-//            }
         }
+        else -> {
+            CottonLoadingView(
+                modifier = Modifier.fillMaxSize()
+            )
+        }
+//        is NewsUiState.Error -> TODO()
+//        is NewsUiState.Loading -> {
+//           //  TODO : Make VlrGGLoadingView
+//        }
     }
 }
 
@@ -78,9 +81,12 @@ fun NewsCard(
     news: ValEsportsNews,
     onClickCard: () -> Unit = {}
 ) {
-    Card {
+    Card(
+        modifier = modifier,
+        elevation = 4.dp
+    ) {
         Column(
-            modifier = modifier
+            modifier = Modifier
                 .padding(16.dp)
                 .clickable { onClickCard() }
         ) {
@@ -122,7 +128,51 @@ fun NewsCard(
     }
 }
 
-@Preview
+@Preview(showBackground = true)
+@Composable
+fun NewsScreenSuccessPreview() {
+    NewsScreen(
+        newsUiState = NewsUiState.Success(
+            listOf(
+                ValEsportsNews(
+                    title = "Gen.G reveal all-Korean  123123 ",
+                    description = "VLR.gg's roster tracker keeps up to date on roster moves in the Pacific region in view of the upcome asdfasdfasdfasdfasdfasdfasdf",
+                    flagISO = "KR",
+                    date = "November 22, 2022",
+                    writer = "Dr.Sun Cotton"
+                ),
+                ValEsportsNews(
+                    title = "Gen.G reveal all-Korean roste 222 r",
+                    description = "VLR.gg's roster tracker keeps up to date on roster moves in the Pacific region in view of the upcome asdfasdfasdfasdfasdfasdfasdf",
+                    flagISO = "KR",
+                    date = "October 22, 2022",
+                    writer = "Dr.Sun Cotton"
+                ),
+                ValEsportsNews(
+                    title = "Gen.G reveal all-Korean roster",
+                    description = "VLR.gg's roster tracker keeps up to date on roster moves in the Pacific region in view of the upcome asdfasdfasdfasdfasdfasdfasdf",
+                    flagISO = "KR",
+                    date = "October 22, 2022",
+                    writer = "Dr.Sun Cotton"
+                )
+            )
+        ),
+        onClickBack = { },
+        onClickItem = { }
+    )
+}
+
+@Preview(showBackground = true)
+@Composable
+fun NewsScreenLoadingPreview() {
+    NewsScreen(
+        newsUiState = NewsUiState.Loading,
+        onClickBack = { },
+        onClickItem = { }
+    )
+}
+
+@Preview(showBackground = true)
 @Composable
 fun NewsCardPreview() {
     NewsCard(
