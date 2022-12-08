@@ -1,5 +1,6 @@
 package kr.co.cotton.data.sportsnews.datasource
 
+import android.util.Log
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -40,6 +41,7 @@ class RemoteValEsportsNewsDataSource @Inject constructor() : ValEsportsNewsDataS
         val valEsportsLastIndex =
             document.select("div.action-container-pages a").last()?.text()?.toIntOrNull()
 
+        Log.d("valEsportsLastIndex", "${valEsportsLastIndex ?: "error"}")
         return valEsportsLastIndex ?: 1
     }
 
@@ -69,6 +71,8 @@ class RemoteValEsportsNewsDataSource @Inject constructor() : ValEsportsNewsDataS
                     writer = dateAndWriter.last()
                 )
             )
+
+            Log.d("valEsportsNewsList", "${title}")
         }
 
         return valEsportsNewsList

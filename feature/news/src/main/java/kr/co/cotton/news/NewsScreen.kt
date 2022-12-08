@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.material.Button
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -33,8 +34,8 @@ internal fun NewsRoute(
     NewsScreen(
         modifier = modifier,
         newsUiState = newsUiState,
-        onClickBack = { viewModel.onClickBack() },
-        onClickItem = { viewModel.onClickNewsItem(it) }
+        onClickItem = { viewModel.onClickNewsItem(it) },
+        onClickIndexBtn = { viewModel.onClickIndexBtn() }
     )
 }
 
@@ -42,8 +43,8 @@ internal fun NewsRoute(
 fun NewsScreen(
     modifier: Modifier = Modifier,
     newsUiState: NewsUiState,
-    onClickBack: () -> Unit,
-    onClickItem: (ValEsportsNews) -> Unit
+    onClickItem: (ValEsportsNews) -> Unit,
+    onClickIndexBtn: () -> Unit
 ) {
     val state = rememberLazyListState()
 
@@ -57,7 +58,16 @@ fun NewsScreen(
                 items(newsUiState.news) { news ->
                     NewsCard(
                         modifier = Modifier.padding(top = 16.dp, start = 16.dp, end = 16.dp),
-                        news = news
+                        news = news,
+                        onClickCard = onClickItem
+                    )
+                }
+                item {
+                    Button(
+                        content = {
+                            Text(text = "index + 1")
+                        },
+                        onClick = onClickIndexBtn
                     )
                 }
             }
@@ -67,10 +77,6 @@ fun NewsScreen(
                 modifier = Modifier.fillMaxSize()
             )
         }
-//        is NewsUiState.Error -> TODO()
-//        is NewsUiState.Loading -> {
-//           //  TODO : Make VlrGGLoadingView
-//        }
     }
 }
 
@@ -78,7 +84,7 @@ fun NewsScreen(
 fun NewsCard(
     modifier: Modifier = Modifier,
     news: ValEsportsNews,
-    onClickCard: () -> Unit = {}
+    onClickCard: (ValEsportsNews) -> Unit = {}
 ) {
     Card(
         modifier = modifier,
@@ -87,7 +93,7 @@ fun NewsCard(
         Column(
             modifier = Modifier
                 .padding(16.dp)
-                .clickable { onClickCard() }
+                .clickable { onClickCard(news) }
         ) {
             Text(
                 modifier = Modifier.fillMaxWidth(),
@@ -156,8 +162,8 @@ fun NewsScreenSuccessPreview() {
                 )
             )
         ),
-        onClickBack = { },
-        onClickItem = { }
+        onClickItem = {},
+        onClickIndexBtn = {}
     )
 }
 
@@ -166,8 +172,8 @@ fun NewsScreenSuccessPreview() {
 fun NewsScreenLoadingPreview() {
     NewsScreen(
         newsUiState = NewsUiState.Loading,
-        onClickBack = { },
-        onClickItem = { }
+        onClickItem = {},
+        onClickIndexBtn = {}
     )
 }
 
