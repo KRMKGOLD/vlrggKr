@@ -13,29 +13,33 @@ import javax.inject.Inject
 
 class RemoteValEsportsNewsDataSource @Inject constructor() : ValEsportsNewsDataSource {
 
-    override fun getNewsMaxIndex(): Flow<Int> = flow {
+    override fun getNewsMaxIndex(): Int {
         try {
             val valEsportsNewsUrl = "https://www.vlr.gg/news"
             val valEsportsNewsDoc = Jsoup.connect(valEsportsNewsUrl).get()
             val maxIndex = getNewsMaxIndexWithDoc(valEsportsNewsDoc)
 
-            emit(maxIndex)
+            return maxIndex
         } catch (e: Exception) {
             throw e
         }
-    }.flowOn(Dispatchers.IO)
+    }
 
-    override fun getValEsportsNews(page: Int): Flow<List<ValEsportsNews>> = flow {
+    override fun getValEsportsNews(page: Int): List<ValEsportsNews> {
         try {
             val valEsportsNewsUrl = "https://www.vlr.gg/news/?page=${page}"
             val valEsportsNewsDoc = Jsoup.connect(valEsportsNewsUrl).get()
             val valEsportsNews = getValEsportsNewsWithDoc(valEsportsNewsDoc)
 
-            emit(valEsportsNews)
+            return valEsportsNews
         } catch (e: Exception) {
             throw e
         }
-    }.flowOn(Dispatchers.IO)
+    }
+
+    override fun updateValEsportsNews(page: Int, value: List<ValEsportsNews>) {
+        throw NotImplementedError()
+    }
 
     private fun getNewsMaxIndexWithDoc(document: Document): Int {
         val valEsportsLastIndex =

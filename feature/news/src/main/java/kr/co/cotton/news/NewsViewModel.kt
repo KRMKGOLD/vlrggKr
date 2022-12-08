@@ -1,6 +1,5 @@
 package kr.co.cotton.news
 
-import androidx.compose.runtime.MutableState
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -59,9 +58,10 @@ class NewsViewModel @Inject constructor(
         // TODO : Click News
     }
 
-    fun onClickIndexBtn() {
+    fun onClickIndexBtn(index: Int) {
         currentIndex.tryEmit(currentIndex.value + 1)
-        getNewsUiState(currentIndex.value)
+//        getNewsUiState(currentIndex.value)
+        getNewsUiState(index)
     }
 }
 

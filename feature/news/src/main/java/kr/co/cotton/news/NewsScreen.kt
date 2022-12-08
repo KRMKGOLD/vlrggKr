@@ -5,10 +5,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material.Button
-import androidx.compose.material.Card
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -35,7 +32,7 @@ internal fun NewsRoute(
         modifier = modifier,
         newsUiState = newsUiState,
         onClickItem = { viewModel.onClickNewsItem(it) },
-        onClickIndexBtn = { viewModel.onClickIndexBtn() }
+        onClickIndexBtn = { viewModel.onClickIndexBtn(it) }
     )
 }
 
@@ -44,7 +41,7 @@ fun NewsScreen(
     modifier: Modifier = Modifier,
     newsUiState: NewsUiState,
     onClickItem: (ValEsportsNews) -> Unit,
-    onClickIndexBtn: () -> Unit
+    onClickIndexBtn: (Int) -> Unit
 ) {
     val state = rememberLazyListState()
 
@@ -63,12 +60,40 @@ fun NewsScreen(
                     )
                 }
                 item {
-                    Button(
-                        content = {
-                            Text(text = "index + 1")
-                        },
-                        onClick = onClickIndexBtn
-                    )
+                    Row(
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Button(
+                            content = {
+                                Text(text = "1")
+                            },
+                            onClick = { onClickIndexBtn(1) }
+                        )
+                        Button(
+                            content = {
+                                Text(text = "2")
+                            },
+                            onClick = { onClickIndexBtn(2) }
+                        )
+                        Button(
+                            content = {
+                                Text(text = "3")
+                            },
+                            onClick = { onClickIndexBtn(3) }
+                        )
+                        Button(
+                            content = {
+                                Text(text = "4")
+                            },
+                            onClick = { onClickIndexBtn(4) }
+                        )
+                        Button(
+                            content = {
+                                Text(text = "5")
+                            },
+                            onClick = { onClickIndexBtn(5) }
+                        )
+                    }
                 }
             }
         }
