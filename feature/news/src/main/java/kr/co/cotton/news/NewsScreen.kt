@@ -10,6 +10,7 @@ import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -23,13 +24,12 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import kr.co.cotton.data.sportsnews.ValEsportsNews
 import kr.co.cotton.designsystem.component.CottonLoadingView
 
-@OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
 internal fun NewsRoute(
     modifier: Modifier = Modifier,
     viewModel: NewsViewModel = hiltViewModel()
 ) {
-    val newsUiState: NewsUiState by viewModel.newsUiState.collectAsStateWithLifecycle()
+    val newsUiState: NewsUiState by viewModel.newsUiState.collectAsState()
 
     NewsScreen(
         modifier = modifier,

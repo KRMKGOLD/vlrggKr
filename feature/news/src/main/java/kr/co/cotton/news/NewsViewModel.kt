@@ -1,8 +1,8 @@
 package kr.co.cotton.news
 
+import androidx.compose.runtime.MutableState
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import kr.co.cotton.common.Result
@@ -12,45 +12,43 @@ import kr.co.cotton.data.sportsnews.ValEsportsNews
 import kr.co.cotton.data.sportsnews.repository.ValEsportsNewsRepository
 import javax.inject.Inject
 
-@OptIn(ExperimentalCoroutinesApi::class)
 @HiltViewModel
 class NewsViewModel @Inject constructor(
     private val newsRepository: ValEsportsNewsRepository
 ) : BaseViewModel() {
 
-    val maxNewsIndex: StateFlow<Int> = newsRepository.maxNewsIndexStream()
-        .stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.Eagerly,
-            initialValue = 0
-        )
-
-    val maxIndex = MutableStateFlow(0)
+    private val _maxNewsIndex = MutableStateFlow(0)
 
     private val currentIndex = MutableStateFlow(1)
 
-    val newsUiState: StateFlow<NewsUiState> =
-        newsRepository.getNewsListStream(currentIndex.value)
-            .stateIn(
-                scope = viewModelScope,
-                started = SharingStarted.WhileSubscribed(5000),
-                initialValue = NewsUiState.Loading
-            )
+    private val _newsUiState = MutableStateFlow<NewsUiState>(NewsUiState.Loading)
+    val newsUiState: StateFlow<NewsUiState> = _newsUiState.asStateFlow()
 
     init {
         getNewsMaxIndex()
-    }
-
-    private fun getNewsUiState(index: Int) = viewModelScope.launch {
-        currentIndex.value = index
+        getNewsUiState(currentIndex.value)
     }
 
     private fun getNewsMaxIndex() = viewModelScope.launch {
-        maxNewsIndex.collect {
-            if (it == -1) {
-                showToast("Failed Get Max Index")
-            }
-        }
+        newsRepository.getNewsMaxIndex().asResult()
+            .map { maxIdxResult ->
+                _maxNewsIndex.value = when (maxIdxResult) {
+                    is Result.Success -> maxIdxResult.data
+                    is Result.Loading -> 0
+                    is Result.Error -> -1
+                }
+            }.collect()
+    }
+
+    private fun getNewsUiState(index: Int) = viewModelScope.launch {
+        newsRepository.getValEsportsNews(index).asResult()
+            .map { newsResult ->
+                _newsUiState.value = when (newsResult) {
+                    is Result.Success -> NewsUiState.Success(newsResult.data)
+                    is Result.Loading -> NewsUiState.Loading
+                    is Result.Error -> NewsUiState.Error
+                }
+            }.collect()
     }
 
     /**
@@ -62,36 +60,9 @@ class NewsViewModel @Inject constructor(
     }
 
     fun onClickIndexBtn() {
-        getNewsUiState(currentIndex.value + 1)
+        currentIndex.tryEmit(currentIndex.value + 1)
+        getNewsUiState(currentIndex.value)
     }
-}
-
-private fun ValEsportsNewsRepository.maxNewsIndexStream(): Flow<Int> {
-    return this.getNewsMaxIndex().asResult()
-        .map { maxIdxResult ->
-            when (maxIdxResult) {
-                is Result.Success -> {
-                    maxIdxResult.data
-                }
-                is Result.Loading -> 0
-                is Result.Error -> -1
-            }
-        }
-}
-
-private fun ValEsportsNewsRepository.getNewsListStream(index: Int): Flow<NewsUiState> {
-    return this.getValEsportsNews(index).asResult()
-        .map { newsResult ->
-            when (newsResult) {
-                is Result.Success -> {
-                    NewsUiState.Success(newsResult.data)
-                }
-                is Result.Loading -> NewsUiState.Loading
-                is Result.Error -> {
-                    NewsUiState.Error
-                }
-            }
-        }
 }
 
 sealed interface NewsUiState {
