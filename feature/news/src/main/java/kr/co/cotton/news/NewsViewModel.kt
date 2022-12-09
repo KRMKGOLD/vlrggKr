@@ -50,10 +50,6 @@ class NewsViewModel @Inject constructor(
             }.collect()
     }
 
-    /**
-     * TODO : Local 부분에 Cache 로직을 추가
-     * https://github.com/android/architecture-samples/blob/main/app/src/main/java/com/example/android/architecture/blueprints/todoapp/data/source/DefaultTasksRepository.kt
-     */
     fun onClickNewsItem(news: ValEsportsNews) {
         // TODO : Click News
     }

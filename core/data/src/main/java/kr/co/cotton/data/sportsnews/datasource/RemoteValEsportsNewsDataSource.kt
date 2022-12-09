@@ -76,7 +76,7 @@ class RemoteValEsportsNewsDataSource @Inject constructor() : ValEsportsNewsDataS
                 )
             )
 
-            Log.d("valEsportsNewsList", "${title}")
+            Log.d("valEsportsNewsList", "${flagISO}")
         }
 
         return valEsportsNewsList
