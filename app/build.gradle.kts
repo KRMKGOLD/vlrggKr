@@ -76,7 +76,6 @@ dependencies {
     debugImplementation(DependencyInfo.AndroidX.Compose.lifecycle)
     debugImplementation(DependencyInfo.AndroidX.Compose.lifecycleViewModel)
 
-
     testImplementation(DependencyInfo.Test.junit)
     androidTestImplementation(DependencyInfo.AndroidX.junit)
     androidTestImplementation(DependencyInfo.AndroidX.espresso)

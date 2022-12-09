@@ -80,4 +80,6 @@ dependencies {
 
     implementation(DependencyInfo.Glide.glide)
     kapt(DependencyInfo.Glide.compiler)
+
+    implementation(DependencyInfo.FlagKit.flagKit)
 }
