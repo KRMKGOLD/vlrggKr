@@ -27,6 +27,14 @@ object DependencyInfo {
             const val lifecycleViewModel =
                 "androidx.lifecycle:lifecycle-viewmodel-compose:2.6.0-alpha03"
         }
+
+        object Paging3 {
+
+            const val paging3Version = "3.1.1"
+
+            const val runtime = "androidx.paging:paging-runtime-ktx:$paging3Version"
+            const val compose = "androidx.paging:paging-compose:1.0.0-alpha17"
+        }
     }
 
     object Test {

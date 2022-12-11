@@ -1,6 +1,5 @@
 package kr.co.cotton.news
 
-import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -24,7 +23,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.murgupluoglu.flagkit.FlagKit
-import dagger.hilt.android.internal.managers.FragmentComponentManager.findActivity
 import kr.co.cotton.data.sportsnews.ValEsportsNews
 import kr.co.cotton.designsystem.component.CottonLoadingView
 
@@ -39,7 +37,7 @@ internal fun NewsRoute(
         modifier = modifier,
         newsUiState = newsUiState,
         onClickItem = { viewModel.onClickNewsItem(it) },
-        onClickIndexBtn = { viewModel.onClickIndexBtn(it) }
+        onClickIndexBtn = { viewModel.onClickIndexBtn() }
     )
 }
 
@@ -48,7 +46,7 @@ fun NewsScreen(
     modifier: Modifier = Modifier,
     newsUiState: NewsUiState,
     onClickItem: (ValEsportsNews) -> Unit,
-    onClickIndexBtn: (Int) -> Unit
+    onClickIndexBtn: () -> Unit
 ) {
     val state = rememberLazyListState()
 
@@ -65,42 +63,6 @@ fun NewsScreen(
                         news = news,
                         onClickCard = onClickItem
                     )
-                }
-                item {
-                    Row(
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        Button(
-                            content = {
-                                Text(text = "1")
-                            },
-                            onClick = { onClickIndexBtn(1) }
-                        )
-                        Button(
-                            content = {
-                                Text(text = "2")
-                            },
-                            onClick = { onClickIndexBtn(2) }
-                        )
-                        Button(
-                            content = {
-                                Text(text = "3")
-                            },
-                            onClick = { onClickIndexBtn(3) }
-                        )
-                        Button(
-                            content = {
-                                Text(text = "4")
-                            },
-                            onClick = { onClickIndexBtn(4) }
-                        )
-                        Button(
-                            content = {
-                                Text(text = "5")
-                            },
-                            onClick = { onClickIndexBtn(5) }
-                        )
-                    }
                 }
             }
         }

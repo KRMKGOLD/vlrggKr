@@ -69,6 +69,9 @@ dependencies {
     debugImplementation(DependencyInfo.AndroidX.Compose.lifecycle)
     debugImplementation(DependencyInfo.AndroidX.Compose.lifecycleViewModel)
 
+    implementation(DependencyInfo.AndroidX.Paging3.runtime)
+    implementation(DependencyInfo.AndroidX.Paging3.compose)
+
     testImplementation(DependencyInfo.Test.junit)
     androidTestImplementation(DependencyInfo.AndroidX.junit)
     androidTestImplementation(DependencyInfo.AndroidX.espresso)

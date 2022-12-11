@@ -25,7 +25,7 @@ class NewsViewModel @Inject constructor(
 
     init {
         getNewsMaxIndex()
-        getNewsUiState(currentIndex.value)
+        getNewsUiState()
     }
 
     private fun getNewsMaxIndex() = viewModelScope.launch {
@@ -39,8 +39,8 @@ class NewsViewModel @Inject constructor(
             }.collect()
     }
 
-    private fun getNewsUiState(index: Int) = viewModelScope.launch {
-        newsRepository.getValEsportsNews(index).asResult()
+    private fun getNewsUiState() = viewModelScope.launch {
+        newsRepository.getValEsportsNews(currentIndex.value).asResult()
             .map { newsResult ->
                 _newsUiState.value = when (newsResult) {
                     is Result.Success -> NewsUiState.Success(newsResult.data)
@@ -54,10 +54,9 @@ class NewsViewModel @Inject constructor(
         // TODO : Click News
     }
 
-    fun onClickIndexBtn(index: Int) {
+    fun onClickIndexBtn() {
         currentIndex.tryEmit(currentIndex.value + 1)
-//        getNewsUiState(currentIndex.value)
-        getNewsUiState(index)
+        getNewsUiState()
     }
 }
 
