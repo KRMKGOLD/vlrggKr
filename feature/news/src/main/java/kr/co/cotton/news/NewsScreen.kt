@@ -36,8 +36,7 @@ internal fun NewsRoute(
     NewsScreen(
         modifier = modifier,
         newsUiState = newsUiState,
-        onClickItem = { viewModel.onClickNewsItem(it) },
-        onClickIndexBtn = { viewModel.onClickIndexBtn() }
+        onClickItem = viewModel::onClickNewsItem
     )
 }
 
@@ -45,8 +44,7 @@ internal fun NewsRoute(
 fun NewsScreen(
     modifier: Modifier = Modifier,
     newsUiState: NewsUiState,
-    onClickItem: (ValEsportsNews) -> Unit,
-    onClickIndexBtn: () -> Unit
+    onClickItem: (ValEsportsNews) -> Unit
 ) {
     val state = rememberLazyListState()
 
@@ -172,20 +170,16 @@ fun NewsScreenSuccessPreview() {
                     writer = "Dr.Sun Cotton"
                 )
             )
-        ),
-        onClickItem = {},
-        onClickIndexBtn = {}
-    )
+        )
+    ) {}
 }
 
 @Preview(showBackground = true)
 @Composable
 fun NewsScreenLoadingPreview() {
     NewsScreen(
-        newsUiState = NewsUiState.Loading,
-        onClickItem = {},
-        onClickIndexBtn = {}
-    )
+        newsUiState = NewsUiState.Loading
+    ) {}
 }
 
 @Preview(showBackground = true)

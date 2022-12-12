@@ -53,11 +53,6 @@ class NewsViewModel @Inject constructor(
     fun onClickNewsItem(news: ValEsportsNews) {
         // TODO : Click News
     }
-
-    fun onClickIndexBtn() {
-        currentIndex.tryEmit(currentIndex.value + 1)
-        getNewsUiState()
-    }
 }
 
 sealed interface NewsUiState {
