@@ -1,5 +1,7 @@
 package kr.co.cotton.news
 
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -21,6 +23,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.murgupluoglu.flagkit.FlagKit
 import kr.co.cotton.data.sportsnews.ValEsportsNews
@@ -32,11 +35,21 @@ internal fun NewsRoute(
     viewModel: NewsViewModel = hiltViewModel()
 ) {
     val newsUiState: NewsUiState by viewModel.newsUiState.collectAsState()
+    val context = LocalContext.current
 
     NewsScreen(
         modifier = modifier,
         newsUiState = newsUiState,
-        onClickItem = viewModel::onClickNewsItem
+        onClickItem = {
+            ContextCompat.startActivity(
+                context,
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse(it.url)
+                ),
+                null
+            )
+        }
     )
 }
 

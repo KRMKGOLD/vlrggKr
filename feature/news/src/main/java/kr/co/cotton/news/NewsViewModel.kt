@@ -23,6 +23,9 @@ class NewsViewModel @Inject constructor(
     private val _newsUiState = MutableStateFlow<NewsUiState>(NewsUiState.Loading)
     val newsUiState: StateFlow<NewsUiState> = _newsUiState.asStateFlow()
 
+    private val _onClickNewsItem = MutableSharedFlow<String>()
+    val onClickNewsItem: SharedFlow<String> = _onClickNewsItem
+
     init {
         getNewsMaxIndex()
         getNewsUiState()
@@ -48,10 +51,6 @@ class NewsViewModel @Inject constructor(
                     is Result.Error -> NewsUiState.Error
                 }
             }.collect()
-    }
-
-    fun onClickNewsItem(news: ValEsportsNews) {
-        // TODO : Click News
     }
 }
 
