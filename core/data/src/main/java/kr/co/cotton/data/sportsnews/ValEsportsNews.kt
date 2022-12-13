@@ -8,4 +8,7 @@ data class ValEsportsNews(
     val flagISO: String? = null,
     val date: String? = null,
     val writer: String? = null
-)
+) {
+
+    val isDataEmpty = listOfNotNull(href, url, title, description, flagISO, date, writer).isEmpty()
+}
