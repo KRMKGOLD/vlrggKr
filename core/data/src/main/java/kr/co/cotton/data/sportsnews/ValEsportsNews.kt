@@ -9,5 +9,5 @@ data class ValEsportsNews(
     val writer: String? = null
 ) {
 
-    val url: String? = "https://www.vlr.ggv${href}"
+    val url: String? = "https://www.vlr.gg${href}"
 }

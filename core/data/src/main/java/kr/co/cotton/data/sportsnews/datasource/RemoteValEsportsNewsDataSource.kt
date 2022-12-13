@@ -54,6 +54,7 @@ class RemoteValEsportsNewsDataSource @Inject constructor() : ValEsportsNewsDataS
         val valEsportsNewsList = mutableListOf<ValEsportsNews>()
 
         for (news in valEsportsNewsElement) {
+            val href = news.attr("href")
             val newsInfoList = news.select("div div")
 
             val title = newsInfoList[0].text()
@@ -68,6 +69,7 @@ class RemoteValEsportsNewsDataSource @Inject constructor() : ValEsportsNewsDataS
 
             valEsportsNewsList.add(
                 ValEsportsNews(
+                    href = href,
                     title = title,
                     description = description,
                     flagISO = flagISO,
