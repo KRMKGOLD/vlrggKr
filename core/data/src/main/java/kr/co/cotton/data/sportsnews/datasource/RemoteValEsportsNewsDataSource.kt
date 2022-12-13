@@ -54,14 +54,16 @@ class RemoteValEsportsNewsDataSource @Inject constructor() : ValEsportsNewsDataS
         val valEsportsNewsList = mutableListOf<ValEsportsNews>()
 
         for (news in valEsportsNewsElement) {
-            val href = news.attr("href")
             val newsInfoList = news.select("div div")
 
+            val href = news.attr("href")
+            val url = "https://www.vlr.gg${href}"
             val title = newsInfoList[0].text()
             val description = newsInfoList[1].text()
             val flagISO = newsInfoList[2].select("i").attr("class").takeLast(2)
-            val dateAndWriter =
-                newsInfoList[2].childNodes().filter {
+            val dateAndWriter = newsInfoList[2]
+                .childNodes()
+                .filter {
                     it is TextNode && it.text().isNotBlank()
                 }.map {
                     (it as? TextNode)?.text()
@@ -69,7 +71,7 @@ class RemoteValEsportsNewsDataSource @Inject constructor() : ValEsportsNewsDataS
 
             valEsportsNewsList.add(
                 ValEsportsNews(
-                    href = href,
+                    url = url,
                     title = title,
                     description = description,
                     flagISO = flagISO,
@@ -77,8 +79,6 @@ class RemoteValEsportsNewsDataSource @Inject constructor() : ValEsportsNewsDataS
                     writer = dateAndWriter.last()
                 )
             )
-
-            Log.d("valEsportsNewsList", "${flagISO}")
         }
 
         return valEsportsNewsList
