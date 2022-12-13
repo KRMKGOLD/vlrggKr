@@ -71,6 +71,7 @@ class RemoteValEsportsNewsDataSource @Inject constructor() : ValEsportsNewsDataS
 
             valEsportsNewsList.add(
                 ValEsportsNews(
+                    href = href,
                     url = url,
                     title = title,
                     description = description,
@@ -79,6 +80,8 @@ class RemoteValEsportsNewsDataSource @Inject constructor() : ValEsportsNewsDataS
                     writer = dateAndWriter.last()
                 )
             )
+
+            Log.d("valEsportsNewsList", "${title}")
         }
 
         return valEsportsNewsList

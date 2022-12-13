@@ -1,5 +1,8 @@
 package kr.co.cotton.data.sportsnews.repository
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kr.co.cotton.data.sportsnews.ValEsportsNews
@@ -16,14 +19,12 @@ class DefaultValEsportsNewsRepository @Inject constructor(
         emit(remoteValEsportsNewsDataSource.getNewsMaxIndex())
     }.flowOn(Dispatchers.IO)
 
-    override fun getValEsportsNews(page: Int): Flow<List<ValEsportsNews>> = flow {
-        val cached = localValEsportsNewsDataSource.getValEsportsNews(page)
-        val data = cached.ifEmpty {
-            val remote = remoteValEsportsNewsDataSource.getValEsportsNews(page)
-            localValEsportsNewsDataSource.updateValEsportsNews(page, remote)
-            remote
-        }
-
-        emit(data)
-    }.flowOn(Dispatchers.IO)
+    override fun getValEsportsNews(): Flow<PagingData<ValEsportsNews>> {
+        return Pager(PagingConfig(10)) {
+            VlrEsportsNewsPagingSource(
+                remoteValEsportsNewsDataSource,
+                localValEsportsNewsDataSource
+            )
+        }.flow
+    }
 }

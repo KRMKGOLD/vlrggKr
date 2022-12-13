@@ -1,6 +1,7 @@
 package kr.co.cotton.data.sportsnews
 
 data class ValEsportsNews(
+    val href: String? = null,
     val url: String? = null,
     val title: String? = null,
     val description: String? = null,

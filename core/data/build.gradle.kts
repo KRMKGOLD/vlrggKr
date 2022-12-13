@@ -45,4 +45,6 @@ dependencies {
     implementation(DependencyInfo.Hilt.hilt)
     implementation(DependencyInfo.Hilt.compose)
     kapt(DependencyInfo.Hilt.compiler)
+
+    implementation(DependencyInfo.AndroidX.Paging3.runtime)
 }

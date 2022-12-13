@@ -1,6 +1,8 @@
 package kr.co.cotton.news
 
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -20,15 +22,10 @@ class NewsViewModel @Inject constructor(
 
     private val currentIndex = MutableStateFlow(1)
 
-    private val _newsUiState = MutableStateFlow<NewsUiState>(NewsUiState.Loading)
-    val newsUiState: StateFlow<NewsUiState> = _newsUiState.asStateFlow()
-
-    private val _onClickNewsItem = MutableSharedFlow<String>()
-    val onClickNewsItem: SharedFlow<String> = _onClickNewsItem
+    val newsListFlow = newsRepository.getValEsportsNews().cachedIn(viewModelScope)
 
     init {
         getNewsMaxIndex()
-        getNewsUiState()
     }
 
     private fun getNewsMaxIndex() = viewModelScope.launch {
@@ -41,21 +38,4 @@ class NewsViewModel @Inject constructor(
                 }
             }.collect()
     }
-
-    private fun getNewsUiState() = viewModelScope.launch {
-        newsRepository.getValEsportsNews(currentIndex.value).asResult()
-            .map { newsResult ->
-                _newsUiState.value = when (newsResult) {
-                    is Result.Success -> NewsUiState.Success(newsResult.data)
-                    is Result.Loading -> NewsUiState.Loading
-                    is Result.Error -> NewsUiState.Error
-                }
-            }.collect()
-    }
-}
-
-sealed interface NewsUiState {
-    data class Success(val news: List<ValEsportsNews>) : NewsUiState
-    object Error : NewsUiState
-    object Loading : NewsUiState
 }
