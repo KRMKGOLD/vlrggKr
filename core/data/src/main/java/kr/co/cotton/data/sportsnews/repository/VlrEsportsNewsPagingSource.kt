@@ -34,8 +34,6 @@ class VlrEsportsNewsPagingSource(
 
                 val nextKey = if (data.any { news -> news.href == "//" }) null else page + 1
 
-                Log.d("data", data.toString())
-
                 LoadResult.Page(
                     data = data,
                     prevKey = null,

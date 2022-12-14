@@ -58,7 +58,7 @@ fun MainScreen(
         Button(
             content = {
                 Text(
-                    text = stringResource(id = MainNavigationItem.Search.title)
+                    text = stringResource(id = MainNavigationItem.News.title)
                 )
             },
             onClick = {

@@ -10,6 +10,7 @@ import kr.co.cotton.data.sportsnews.datasource.ValEsportsNewsDataSource
 import kr.co.cotton.data.sportsnews.repository.DefaultValEsportsNewsRepository
 import kr.co.cotton.data.sportsnews.repository.ValEsportsNewsRepository
 import javax.inject.Named
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -28,6 +29,7 @@ interface ValSportsNewsModule {
 
     @Binds
     @Named("LOCAL")
+    @Singleton
     fun bindLocalValEsportsNewsDataSource(
         localValEsportsNewsDataSource: LocalValEsportsNewsDataSource
     ): ValEsportsNewsDataSource

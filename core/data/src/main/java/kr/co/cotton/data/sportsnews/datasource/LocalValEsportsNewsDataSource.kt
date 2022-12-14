@@ -1,6 +1,7 @@
 package kr.co.cotton.data.sportsnews.datasource
 
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.update
 import kr.co.cotton.data.model.ValEsportsNews
 import javax.inject.Inject
 
@@ -18,6 +19,9 @@ class LocalValEsportsNewsDataSource @Inject constructor() : ValEsportsNewsDataSo
     }
 
     override fun updateValEsportsNews(page: Int, value: List<ValEsportsNews>) {
-        valEsportsNewsMap.value[page] = value
+        valEsportsNewsMap.update {
+            it[page] = value
+            it
+        }
     }
 }
