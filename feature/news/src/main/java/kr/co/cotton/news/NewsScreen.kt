@@ -78,7 +78,7 @@ fun NewsScreen(
 
         lazyPagingItems.apply {
             when {
-                loadState.refresh is LoadState.Loading -> {
+                loadState.refresh is LoadState.Loading || loadState.append is LoadState.Loading -> {
                     item {
                         CottonLoadingView(
                             modifier = Modifier
@@ -93,18 +93,6 @@ fun NewsScreen(
                         Text(
                             modifier = Modifier.fillParentMaxSize(),
                             text = e.error.localizedMessage!!,
-                        )
-                    }
-                }
-                loadState.append is LoadState.Loading -> {
-                    item {
-                        NewsCard(
-                            modifier = Modifier.padding(
-                                top = 16.dp,
-                                start = 16.dp,
-                                end = 16.dp
-                            ),
-                            news = ValEsportsNews()
                         )
                     }
                 }
