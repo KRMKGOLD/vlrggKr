@@ -133,16 +133,18 @@ fun NewsCard(
                     style = MaterialTheme.typography.h6,
                     color = Color.Black,
                 )
-                Text(
-                    modifier = Modifier
-                        .padding(top = 4.dp)
-                        .fillMaxWidth(),
-                    text = news.description.orEmpty(),
-                    maxLines = 2,
-                    overflow = TextOverflow.Ellipsis,
-                    style = MaterialTheme.typography.subtitle2,
-                    color = Color.DarkGray
-                )
+                if (news.description.isNullOrEmpty().not()) {
+                    Text(
+                        modifier = Modifier
+                            .padding(top = 4.dp)
+                            .fillMaxWidth(),
+                        text = news.description.orEmpty(),
+                        maxLines = 2,
+                        overflow = TextOverflow.Ellipsis,
+                        style = MaterialTheme.typography.subtitle2,
+                        color = Color.DarkGray
+                    )
+                }
                 Row(
                     modifier = Modifier
                         .padding(top = 4.dp)
