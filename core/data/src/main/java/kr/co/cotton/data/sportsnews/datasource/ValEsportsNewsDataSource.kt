@@ -1,7 +1,6 @@
 package kr.co.cotton.data.sportsnews.datasource
 
-import kotlinx.coroutines.flow.Flow
-import kr.co.cotton.data.sportsnews.ValEsportsNews
+import kr.co.cotton.data.model.ValEsportsNews
 
 interface ValEsportsNewsDataSource {
 

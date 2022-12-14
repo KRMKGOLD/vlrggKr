@@ -13,7 +13,7 @@ import javax.inject.Named
 
 @Module
 @InstallIn(SingletonComponent::class)
-interface ValEsportsNewsModule {
+interface ValSportsNewsModule {
 
     @Binds
     fun bindsValEsportsNewsRepository(

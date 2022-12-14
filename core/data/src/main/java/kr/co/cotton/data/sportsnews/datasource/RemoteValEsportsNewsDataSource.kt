@@ -1,11 +1,7 @@
 package kr.co.cotton.data.sportsnews.datasource
 
 import android.util.Log
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
-import kr.co.cotton.data.sportsnews.ValEsportsNews
+import kr.co.cotton.data.model.ValEsportsNews
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.TextNode

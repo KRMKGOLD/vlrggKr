@@ -1,7 +1,6 @@
 package kr.co.cotton.news
 
 import androidx.lifecycle.viewModelScope
-import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -9,7 +8,7 @@ import kotlinx.coroutines.launch
 import kr.co.cotton.common.Result
 import kr.co.cotton.common.asResult
 import kr.co.cotton.common.base.BaseViewModel
-import kr.co.cotton.data.sportsnews.ValEsportsNews
+import kr.co.cotton.data.model.ValEsportsNews
 import kr.co.cotton.data.sportsnews.repository.ValEsportsNewsRepository
 import javax.inject.Inject
 

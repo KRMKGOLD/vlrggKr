@@ -1,4 +1,4 @@
-package kr.co.cotton.data.sportsnews
+package kr.co.cotton.data.model
 
 data class ValEsportsNews(
     val href: String? = null,
