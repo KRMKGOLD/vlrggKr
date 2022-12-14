@@ -1,13 +1,14 @@
 package kr.co.cotton.news.navigation
 
 import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import kr.co.cotton.news.NewsRoute
 
-const val newsRoute = "news_route"
+const val newsRoute = "/news"
 
-fun NavGraphBuilder.newsScreen() {
+fun NavGraphBuilder.newsScreen(navController: NavHostController) {
     composable(route = newsRoute) {
-        NewsRoute()
+        NewsRoute(navController = navController)
     }
 }

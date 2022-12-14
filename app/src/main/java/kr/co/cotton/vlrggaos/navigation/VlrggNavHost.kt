@@ -6,7 +6,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import kr.co.cotton.news.navigation.newsScreen
-import kr.co.cotton.vlrggaos.ui.MainBottomNavItem
 
 @Composable
 fun MainNavHost(
@@ -16,13 +15,14 @@ fun MainNavHost(
     NavHost(
         modifier = modifier,
         navController = navController,
-        startDestination = MainBottomNavItem.News.screenRoute
+        startDestination = MainNavigationItem.Main.screenRoute
     ) {
-        newsScreen()
-        composable(MainBottomNavItem.Matches.screenRoute) {
+        mainScreen(navController)
+        newsScreen(navController)
+        composable(MainNavigationItem.Matches.screenRoute) {
             // TODO : MatchesScreen
         }
-        composable(MainBottomNavItem.Search.screenRoute) {
+        composable(MainNavigationItem.Search.screenRoute) {
             // TODO : SearchScreen
         }
     }

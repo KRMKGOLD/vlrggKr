@@ -12,6 +12,10 @@ abstract class BaseActivity<VM : BaseViewModel> : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        observeEventFlow()
+    }
+
+    open fun observeEventFlow() = lifecycleScope.launch {
         showToast()
     }
 

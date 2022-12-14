@@ -21,6 +21,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
@@ -32,6 +33,7 @@ import kr.co.cotton.designsystem.component.CottonLoadingView
 @Composable
 internal fun NewsRoute(
     modifier: Modifier = Modifier,
+    navController: NavHostController,
     viewModel: NewsViewModel = hiltViewModel()
 ) {
     val lazyPagingItems = viewModel.newsListFlow.collectAsLazyPagingItems()
