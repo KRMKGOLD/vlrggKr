@@ -1,4 +1,4 @@
-package com.example.home
+package kr.co.cotton.home
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding

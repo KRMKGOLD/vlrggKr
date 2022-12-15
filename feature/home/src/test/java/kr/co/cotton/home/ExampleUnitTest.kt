@@ -1,4 +1,4 @@
-package com.example.home
+package kr.co.cotton.home
 
 import org.junit.Test
 

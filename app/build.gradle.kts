@@ -62,7 +62,6 @@ dependencies {
     implementation(project(":core:designsystem"))
 
     implementation(project(":feature:home"))
-    implementation(project(":feature:news"))
 
     implementation(DependencyInfo.AndroidX.ktx)
     implementation(DependencyInfo.AndroidX.appCompat)

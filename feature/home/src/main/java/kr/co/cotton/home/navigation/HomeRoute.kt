@@ -1,9 +1,9 @@
-package com.example.home.navigation
+package kr.co.cotton.home.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
-import com.example.home.HomeScreen
+import kr.co.cotton.home.HomeScreen
 
 @Composable
 fun HomeRoute(
