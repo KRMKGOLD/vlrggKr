@@ -5,6 +5,8 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.home.navigation.homeRoute
+import com.example.home.navigation.homeScreen
 import kr.co.cotton.news.navigation.newsScreen
 
 @Composable
@@ -15,14 +17,14 @@ fun MainNavHost(
     NavHost(
         modifier = modifier,
         navController = navController,
-        startDestination = MainNavigationItem.Main.screenRoute
+        startDestination = homeRoute
     ) {
-        mainScreen(navController)
+        homeScreen(navController)
         newsScreen(navController)
-        composable(MainNavigationItem.Matches.screenRoute) {
+        composable("matches") {
             // TODO : MatchesScreen
         }
-        composable(MainNavigationItem.Search.screenRoute) {
+        composable("search") {
             // TODO : SearchScreen
         }
     }

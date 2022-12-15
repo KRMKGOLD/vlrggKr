@@ -10,6 +10,4 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor() : BaseViewModel() {
 
-    private val _onClickBackBtn = MutableSharedFlow<Unit>()
-    val onClickBackBtn: SharedFlow<Unit> = _onClickBackBtn.asSharedFlow()
 }

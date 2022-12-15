@@ -50,9 +50,7 @@ android {
 
 dependencies {
 
-    implementation(project(":core:common"))
-    implementation(project(":core:data"))
-    implementation(project(":core:designsystem"))
+    implementation(project(":feature:news"))
 
     implementation(DependencyInfo.AndroidX.ktx)
     implementation(DependencyInfo.AndroidX.appCompat)
@@ -67,9 +65,6 @@ dependencies {
     debugImplementation(DependencyInfo.AndroidX.Compose.lifecycle)
     debugImplementation(DependencyInfo.AndroidX.Compose.lifecycleViewModel)
 
-    implementation(DependencyInfo.AndroidX.Paging3.runtime)
-    implementation(DependencyInfo.AndroidX.Paging3.compose)
-
     testImplementation(DependencyInfo.Test.junit)
     androidTestImplementation(DependencyInfo.AndroidX.junit)
     androidTestImplementation(DependencyInfo.AndroidX.espresso)
@@ -81,6 +76,4 @@ dependencies {
 
     implementation(DependencyInfo.Glide.glide)
     kapt(DependencyInfo.Glide.compiler)
-
-    implementation(DependencyInfo.FlagKit.flagKit)
 }
