@@ -41,7 +41,8 @@ internal fun NewsRoute(
 
     NewsScreen(
         modifier = modifier,
-        lazyPagingItems = lazyPagingItems,
+        navController = navController,
+        esportsNewsPagingList = lazyPagingItems,
         onClickItem = {
             ContextCompat.startActivity(
                 context,
@@ -58,7 +59,8 @@ internal fun NewsRoute(
 @Composable
 fun NewsScreen(
     modifier: Modifier = Modifier,
-    lazyPagingItems: LazyPagingItems<ValEsportsNews>,
+    navController: NavHostController,
+    esportsNewsPagingList: LazyPagingItems<ValEsportsNews>,
     onClickItem: (ValEsportsNews) -> Unit
 ) {
     val state = rememberLazyListState()
@@ -68,7 +70,7 @@ fun NewsScreen(
         state = state,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        items(lazyPagingItems) { news ->
+        items(esportsNewsPagingList) { news ->
             if (news != null) {
                 NewsCard(
                     modifier = Modifier.padding(top = 16.dp, start = 16.dp, end = 16.dp),
@@ -78,7 +80,7 @@ fun NewsScreen(
             }
         }
 
-        lazyPagingItems.apply {
+        esportsNewsPagingList.apply {
             when {
                 loadState.refresh is LoadState.Loading || loadState.append is LoadState.Loading -> {
                     item {
@@ -90,7 +92,7 @@ fun NewsScreen(
                     }
                 }
                 loadState.refresh is LoadState.Error || loadState.append is LoadState.Error -> {
-                    val e = lazyPagingItems.loadState.refresh as LoadState.Error
+                    val e = esportsNewsPagingList.loadState.refresh as LoadState.Error
                     item {
                         Text(
                             modifier = Modifier.fillParentMaxSize(),
