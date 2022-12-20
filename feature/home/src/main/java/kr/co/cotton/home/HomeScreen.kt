@@ -1,6 +1,8 @@
 package kr.co.cotton.home
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Button
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
@@ -13,6 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
@@ -82,7 +85,10 @@ fun MainScreen(
             },
             onValueChange = {},
             maxLines = 1,
-            textStyle = TextStyle(color = Color.Black, fontWeight = FontWeight.Medium)
+            textStyle = TextStyle(color = Color.Black, fontWeight = FontWeight.Medium),
+            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
+//            keyboardActions = KeyboardActions(onSearch =)
+//            TODO : KeyboardAction 클릭 시 Search 화면으로 이동
         )
         Row(
             modifier = Modifier
