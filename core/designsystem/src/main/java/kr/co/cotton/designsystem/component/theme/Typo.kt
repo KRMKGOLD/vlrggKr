@@ -1,10 +1,10 @@
-package kr.co.cotton.vlrggaos.ui.theme
+package kr.co.cotton.designsystem.component.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import kr.co.cotton.vlrggaos.R
+import kr.co.cotton.designsystem.R
 
 val spoqaHanSansNeoFontFamily = FontFamily(
     Font(R.font.spoqa_han_sans_neo_bold, weight = FontWeight.Bold),

@@ -1,4 +1,4 @@
-package kr.co.cotton.vlrggaos.ui.theme
+package kr.co.cotton.designsystem.component.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes
