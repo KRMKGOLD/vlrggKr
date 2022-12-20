@@ -93,12 +93,14 @@ fun MainScreen(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 8.dp),
+                .padding(top = 16.dp),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Button(
                 modifier = Modifier
                     .fillMaxWidth()
+                    .height(100.dp)
+                    .padding(end = 8.dp)
                     .weight(1f),
                 content = {
                     Text(text = "News")
@@ -108,6 +110,8 @@ fun MainScreen(
             Button(
                 modifier = Modifier
                     .fillMaxWidth()
+                    .height(100.dp)
+                    .padding(start = 8.dp)
                     .weight(1f),
                 content = {
                     Text(text = "Matches")
@@ -118,12 +122,14 @@ fun MainScreen(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 8.dp),
+                .padding(top = 16.dp),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Button(
                 modifier = Modifier
                     .fillMaxWidth()
+                    .height(100.dp)
+                    .padding(end = 8.dp)
                     .weight(1f),
                 content = {
                     Text(text = "Search")
@@ -133,6 +139,8 @@ fun MainScreen(
             Button(
                 modifier = Modifier
                     .fillMaxWidth()
+                    .height(100.dp)
+                    .padding(start = 8.dp)
                     .weight(1f),
                 content = {
                     Text(text = "NOTHING")
