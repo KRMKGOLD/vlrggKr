@@ -27,46 +27,6 @@ fun HomeScreen(
     modifier: Modifier = Modifier,
     navController: NavHostController
 ) {
-    Column(modifier = modifier.padding(16.dp)) {
-        Button(
-            content = {
-                Text(
-                    text = "News"
-                )
-            },
-            onClick = {
-                navController.navigateToNews()
-            }
-        )
-        Button(
-            content = {
-                Text(
-                    text = "Matches"
-                )
-            },
-            onClick = {
-                navController.navigate("matches")
-            }
-        )
-        Button(
-            content = {
-                Text(
-                    text = "Search"
-                )
-            },
-            onClick = {
-                navController.navigate("search")
-            }
-        )
-    }
-}
-
-
-@Composable
-fun MainScreen(
-    modifier: Modifier = Modifier,
-    navController: NavHostController,
-) {
 
     val searchValue by remember {
         mutableStateOf("")
@@ -87,8 +47,7 @@ fun MainScreen(
             maxLines = 1,
             textStyle = TextStyle(color = Color.Black, fontWeight = FontWeight.Medium),
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
-//            keyboardActions = KeyboardActions(onSearch =)
-//            TODO : KeyboardAction 클릭 시 Search 화면으로 이동
+            keyboardActions = KeyboardActions(onSearch = { navController.navigate("search") })
         )
         Row(
             modifier = Modifier
@@ -155,8 +114,8 @@ fun MainScreen(
 @Composable
 fun MainScreenPreview() {
     CottonTheme {
-        MainScreen(
-            navController = rememberNavController()
+        HomeScreen(
+            navController = rememberNavController(),
         )
     }
 }
