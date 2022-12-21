@@ -47,7 +47,7 @@ fun HomeScreen(
             maxLines = 1,
             textStyle = TextStyle(color = Color.Black, fontWeight = FontWeight.Medium),
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
-            keyboardActions = KeyboardActions(onSearch = { navController.navigate("search") })
+            keyboardActions = KeyboardActions(onSearch = { navController.navigate("search/{searchValue}") })
         )
         Row(
             modifier = Modifier
