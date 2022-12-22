@@ -1,6 +1,6 @@
-package kr.co.cotton.data.sportsnews.datasource
+package kr.co.cotton.core.data.sportsnews.datasource
 
-import kr.co.cotton.data.model.ValEsportsNews
+import kr.co.cotton.core.data.model.ValEsportsNews
 
 interface ValEsportsNewsDataSource {
 
