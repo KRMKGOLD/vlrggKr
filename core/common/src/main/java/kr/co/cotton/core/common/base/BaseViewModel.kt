@@ -1,4 +1,4 @@
-package kr.co.cotton.common.base
+package kr.co.cotton.core.common.base
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow

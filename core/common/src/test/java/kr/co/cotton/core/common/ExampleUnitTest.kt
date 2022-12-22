@@ -1,4 +1,4 @@
-package kr.co.cotton.common
+package kr.co.cotton.core.common
 
 import org.junit.Test
 
