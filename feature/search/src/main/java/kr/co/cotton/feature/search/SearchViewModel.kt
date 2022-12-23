@@ -1,4 +1,9 @@
 package kr.co.cotton.feature.search
 
-class SearchViewModel {
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kr.co.cotton.core.common.base.BaseViewModel
+
+@HiltViewModel
+class SearchViewModel : BaseViewModel() {
+
 }
