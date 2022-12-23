@@ -1,4 +1,4 @@
-package kr.co.cotton.home
+package kr.co.cotton.feature.home
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardActions

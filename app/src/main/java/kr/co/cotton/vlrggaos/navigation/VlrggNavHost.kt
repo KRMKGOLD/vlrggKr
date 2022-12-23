@@ -5,8 +5,8 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import kr.co.cotton.home.navigation.homeRoute
-import kr.co.cotton.home.navigation.homeScreen
+import kr.co.cotton.feature.home.navigation.homeRoute
+import kr.co.cotton.feature.home.navigation.homeScreen
 import kr.co.cotton.news.navigation.newsScreen
 
 @Composable

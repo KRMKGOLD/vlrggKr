@@ -1,4 +1,4 @@
-package kr.co.cotton.home.navigation
+package kr.co.cotton.feature.home.navigation
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController

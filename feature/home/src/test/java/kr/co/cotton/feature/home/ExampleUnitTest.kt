@@ -1,4 +1,4 @@
-package kr.co.cotton.home
+package kr.co.cotton.feature.home
 
 import org.junit.Test
 
