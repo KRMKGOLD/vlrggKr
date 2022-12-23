@@ -7,7 +7,7 @@ import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import kr.co.cotton.feature.news.NewsRoute
 
-const val newsRoute = "/news"
+const val newsRoute = "news"
 
 fun NavController.navigateToNews(navOptions: NavOptions? = null) {
     this.navigate(newsRoute, navOptions)

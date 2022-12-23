@@ -63,6 +63,7 @@ dependencies {
 
     implementation(project(":feature:home"))
     implementation(project(":feature:news"))
+    implementation(project(":feature:search"))
 
     implementation(DependencyInfo.AndroidX.ktx)
     implementation(DependencyInfo.AndroidX.appCompat)

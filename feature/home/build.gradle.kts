@@ -51,7 +51,9 @@ android {
 dependencies {
 
     implementation(project(":core:designsystem"))
+
     implementation(project(":feature:news"))
+    implementation(project(":feature:search"))
 
     implementation(DependencyInfo.AndroidX.ktx)
     implementation(DependencyInfo.AndroidX.appCompat)

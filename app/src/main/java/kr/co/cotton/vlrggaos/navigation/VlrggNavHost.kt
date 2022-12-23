@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import kr.co.cotton.feature.home.navigation.homeRoute
 import kr.co.cotton.feature.home.navigation.homeScreen
 import kr.co.cotton.feature.news.navigation.newsScreen
+import kr.co.cotton.feature.search.navigation.searchScreen
 
 @Composable
 fun MainNavHost(
@@ -24,8 +25,6 @@ fun MainNavHost(
         composable("matches") {
             // TODO : MatchesScreen
         }
-        composable("search") {
-            // TODO : SearchScreen
-        }
+        searchScreen(navController)
     }
 }

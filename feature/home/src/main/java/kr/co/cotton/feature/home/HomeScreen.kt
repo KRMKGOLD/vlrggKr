@@ -6,10 +6,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Button
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
@@ -21,6 +18,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import kr.co.cotton.core.designsystem.component.theme.CottonTheme
 import kr.co.cotton.feature.news.navigation.navigateToNews
+import kr.co.cotton.feature.search.navigation.navigateToSearch
 
 @Composable
 fun HomeScreen(
@@ -28,9 +26,7 @@ fun HomeScreen(
     navController: NavHostController
 ) {
 
-    val searchValue by remember {
-        mutableStateOf("")
-    }
+    var searchValue by remember { mutableStateOf("") }
 
     Column(
         modifier = modifier
@@ -43,11 +39,15 @@ fun HomeScreen(
             label = {
                 Text(text = "Search...")
             },
-            onValueChange = {},
+            onValueChange = {
+                searchValue = it
+            },
             maxLines = 1,
             textStyle = TextStyle(color = Color.Black, fontWeight = FontWeight.Medium),
             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
-            keyboardActions = KeyboardActions(onSearch = { navController.navigate("search/{searchValue}") })
+            keyboardActions = KeyboardActions(
+                onSearch = { navController.navigateToSearch(searchValue = searchValue) }
+            )
         )
         Row(
             modifier = Modifier
