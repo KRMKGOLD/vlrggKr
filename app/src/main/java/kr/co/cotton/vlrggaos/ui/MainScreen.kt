@@ -8,7 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import kr.co.cotton.designsystem.component.CottonTopBar
+import kr.co.cotton.core.designsystem.component.CottonTopBar
 import kr.co.cotton.vlrggaos.navigation.MainNavHost
 
 @Composable

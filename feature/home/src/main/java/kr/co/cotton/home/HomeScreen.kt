@@ -19,7 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import kr.co.cotton.designsystem.component.theme.CottonTheme
+import kr.co.cotton.core.designsystem.component.theme.CottonTheme
 import kr.co.cotton.news.navigation.navigateToNews
 
 @Composable

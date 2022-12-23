@@ -1,4 +1,4 @@
-package kr.co.cotton.designsystem.component
+package kr.co.cotton.core.designsystem.component
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

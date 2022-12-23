@@ -6,7 +6,7 @@ import androidx.activity.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import kr.co.cotton.core.common.base.BaseActivity
 import kr.co.cotton.vlrggaos.ui.MainScreen
-import kr.co.cotton.designsystem.component.theme.CottonTheme
+import kr.co.cotton.core.designsystem.component.theme.CottonTheme
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity<MainViewModel>() {

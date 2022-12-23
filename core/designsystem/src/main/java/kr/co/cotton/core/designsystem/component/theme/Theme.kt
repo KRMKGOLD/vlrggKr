@@ -1,4 +1,4 @@
-package kr.co.cotton.designsystem.component.theme
+package kr.co.cotton.core.designsystem.component.theme
 
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.lightColors
