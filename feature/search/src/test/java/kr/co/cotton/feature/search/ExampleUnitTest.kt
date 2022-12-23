@@ -1,4 +1,4 @@
-package kr.co.cotton.search
+package kr.co.cotton.feature.search
 
 import org.junit.Test
 

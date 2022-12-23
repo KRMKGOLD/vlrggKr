@@ -1,4 +1,4 @@
-package kr.co.cotton.news
+package kr.co.cotton.feature.news
 
 import org.junit.Test
 

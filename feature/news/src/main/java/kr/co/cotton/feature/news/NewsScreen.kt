@@ -1,4 +1,4 @@
-package kr.co.cotton.news
+package kr.co.cotton.feature.news
 
 import android.content.Intent
 import android.net.Uri

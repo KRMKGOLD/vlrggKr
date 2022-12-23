@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import kr.co.cotton.core.designsystem.component.theme.CottonTheme
-import kr.co.cotton.news.navigation.navigateToNews
+import kr.co.cotton.feature.news.navigation.navigateToNews
 
 @Composable
 fun HomeScreen(
