@@ -1,7 +1,7 @@
 package kr.co.cotton.core.data.sportsnews.datasource
 
 import android.util.Log
-import kr.co.cotton.core.data.model.ValEsportsNews
+import kr.co.cotton.core.data.sportsnews.model.ValEsportsNews
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.TextNode

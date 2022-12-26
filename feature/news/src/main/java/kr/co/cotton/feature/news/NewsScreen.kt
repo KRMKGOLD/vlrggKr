@@ -27,7 +27,7 @@ import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import com.murgupluoglu.flagkit.FlagKit
-import kr.co.cotton.core.data.model.ValEsportsNews
+import kr.co.cotton.core.data.sportsnews.model.ValEsportsNews
 import kr.co.cotton.core.designsystem.component.CottonLoadingView
 
 @Composable

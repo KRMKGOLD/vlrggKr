@@ -1,4 +1,4 @@
-package kr.co.cotton.core.data.di
+package kr.co.cotton.core.data.sportsnews.di
 
 import dagger.Binds
 import dagger.Module

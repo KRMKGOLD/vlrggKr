@@ -5,7 +5,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
-import kr.co.cotton.core.data.model.ValEsportsNews
+import kr.co.cotton.core.data.sportsnews.model.ValEsportsNews
 import kr.co.cotton.core.data.sportsnews.datasource.ValEsportsNewsDataSource
 import javax.inject.Inject
 import javax.inject.Named
