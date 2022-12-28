@@ -5,11 +5,11 @@ import javax.inject.Inject
 
 class LocalSearchDataSource @Inject constructor() : SearchDataSource {
 
-    override fun getAllSearchData(): Int {
-        TODO("Not yet implemented")
+    override fun getAllSearchData(query: String) {
+        throw NotImplementedError()
     }
 
-    override fun <T : SearchResult> getSearchDataWithCategory(category: T) {
-        TODO("Not yet implemented")
+    override fun <T : SearchResult> getSearchDataWithCategory(category: T, query: String) {
+        throw NotImplementedError()
     }
 }
