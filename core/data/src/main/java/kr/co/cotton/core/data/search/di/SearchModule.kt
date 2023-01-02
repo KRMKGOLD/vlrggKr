@@ -6,16 +6,21 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kr.co.cotton.core.data.search.datasource.RemoteSearchDataSource
 import kr.co.cotton.core.data.search.datasource.SearchDataSource
+import kr.co.cotton.core.data.search.repository.DefaultSearchRepository
 import javax.inject.Named
-import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-interface ValSportsNewsModule {
+interface SearchModule {
 
     @Binds
     @Named("REMOTE")
     fun bindRemoteSearchDataSource(
         remoteSearchDataSource: RemoteSearchDataSource
     ): SearchDataSource
+
+    @Binds
+    fun bindsSearchRepository(
+        searchRepository: DefaultSearchRepository
+    ): DefaultSearchRepository
 }

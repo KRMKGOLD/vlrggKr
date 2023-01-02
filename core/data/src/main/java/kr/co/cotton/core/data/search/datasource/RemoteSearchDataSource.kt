@@ -10,12 +10,15 @@ class RemoteSearchDataSource @Inject constructor() : SearchDataSource {
     private fun getUrl(query: String, category: String): String =
         "https://www.vlr.gg/search/?q=${query}&type=${category}"
 
-    override fun getAllSearchData(query: String) {
-        getSearcResultWithCategoryStr(query, "all")
+    override fun getAllSearchData(query: String): List<SearchResult> {
+        return getSearcResultWithCategoryStr(query, "all")
     }
 
-    override fun <T : SearchResult> getSearchDataWithCategory(category: T, query: String) {
-        when (category) {
+    override fun getSearchDataWithCategory(
+        category: SearchResult,
+        query: String
+    ): List<SearchResult> {
+        return when (category) {
             is SearchResult.SearchTeam -> {
                 getSearcResultWithCategoryStr(query, "teams")
             }
