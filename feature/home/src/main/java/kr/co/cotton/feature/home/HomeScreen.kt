@@ -36,18 +36,11 @@ fun HomeScreen(
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
             value = searchValue,
+            onValueChange = {},
             label = {
                 Text(text = "Search...")
             },
-            onValueChange = {
-                searchValue = it
-            },
-            maxLines = 1,
-            textStyle = TextStyle(color = Color.Black, fontWeight = FontWeight.Medium),
-            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
-            keyboardActions = KeyboardActions(
-                onSearch = { navController.navigateToSearch(searchValue = searchValue) }
-            )
+            enabled = false
         )
         Row(
             modifier = Modifier

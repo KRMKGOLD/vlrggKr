@@ -14,13 +14,11 @@ import androidx.navigation.NavController
 internal fun SearchRoute(
     modifier: Modifier = Modifier,
     navController: NavController,
-    searchValue: String = "",
     viewModel: SearchViewModel = hiltViewModel()
 ) {
     SearchScreen(
         modifier = modifier,
-        navController = navController,
-        searchValue = searchValue
+        navController = navController
     )
 }
 
@@ -28,9 +26,10 @@ internal fun SearchRoute(
 fun SearchScreen(
     modifier: Modifier = Modifier,
     navController: NavController,
-    searchValue: String = ""
 ) {
-    val searchValue by remember { mutableStateOf(searchValue) }
+    val searchValue by remember {
+        mutableStateOf("")
+    }
 
     Column(
         modifier = modifier
