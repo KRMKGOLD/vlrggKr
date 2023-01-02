@@ -55,18 +55,20 @@ class RemoteSearchDataSource @Inject constructor() : SearchDataSource {
         return when {
             href.startsWith("/team") -> {
                 val imgSrc = element.select("img").attr("src")
-                val name = element.select("div.search-item-title").text()
+                val name = element.select("div.search-item-title")
                 val desc = element.select("div.search-item-desc")
-                println(desc.getOrNull(0)?.text() + desc.getOrNull(1)?.text())
+
+                val splitName = name.text().split("(")
+                val teamName = splitName.getOrNull(0)?.trim()
+                val inactiveStr = splitName.getOrNull(1)?.dropLast(1)?.trim()
 
                 SearchResult.SearchTeam(
                     imgSrc = imgSrc,
                     href = href,
                     url = urlWithHref,
-                    name = name,
-                    inactiveStr = null,
-                    previouslyStr = null,
-                    currentlyStr = null
+                    name = teamName,
+                    inactiveStr = inactiveStr,
+                    prevOrCurrentStr = desc.text().trim()
                 )
             }
             href.startsWith("/player") -> {

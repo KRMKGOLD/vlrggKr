@@ -12,8 +12,7 @@ sealed class SearchResult(
         override val url: String? = null,
         val name: String? = null,
         val inactiveStr: String? = null,
-        val previouslyStr: String? = null,
-        val currentlyStr: String? = null,
+        val prevOrCurrentStr: String? = null,
     ) : SearchResult(imgSrc, href, url)
 
     data class SearchPlayer(
