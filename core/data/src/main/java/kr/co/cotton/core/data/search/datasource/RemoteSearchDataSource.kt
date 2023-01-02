@@ -2,6 +2,7 @@ package kr.co.cotton.core.data.search.datasource
 
 import kr.co.cotton.core.data.search.model.SearchResult
 import org.jsoup.Jsoup
+import org.jsoup.nodes.Element
 import javax.inject.Inject
 
 class RemoteSearchDataSource @Inject constructor() : SearchDataSource {
@@ -10,68 +11,102 @@ class RemoteSearchDataSource @Inject constructor() : SearchDataSource {
         "https://www.vlr.gg/search/?q=${query}&type=${category}"
 
     override fun getAllSearchData(query: String) {
-        getSearchDataWithCategoryStr(query, "all")
+        getSearcResultWithCategoryStr(query, "all")
     }
 
     override fun <T : SearchResult> getSearchDataWithCategory(category: T, query: String) {
         when (category) {
             is SearchResult.SearchTeam -> {
-                getSearchDataWithCategoryStr(query, "teams")
+                getSearcResultWithCategoryStr(query, "teams")
             }
             is SearchResult.SearchPlayer -> {
-                getSearchDataWithCategoryStr(query, "players")
+                getSearcResultWithCategoryStr(query, "players")
             }
             is SearchResult.SearchEvent -> {
-                getSearchDataWithCategoryStr(query, "events")
+                getSearcResultWithCategoryStr(query, "events")
             }
             is SearchResult.SearchSeries -> {
-                getSearchDataWithCategoryStr(query, "series")
+                getSearcResultWithCategoryStr(query, "series")
             }
         }
     }
 
-    private fun getSearchDataWithCategoryStr(query: String, category: String) {
+    private fun getSearcResultWithCategoryStr(query: String, category: String): List<SearchResult> {
         try {
             val url = getUrl(query, category)
             val doc = Jsoup.connect(url).get()
+            val list = doc.select("div.wf-card a")
+            val searchResultList = mutableListOf<SearchResult>()
 
+            for (searchData in list) {
+                searchResultList.add(getSearchResultWithElements(searchData))
+            }
+
+            return searchResultList
         } catch (e: Exception) {
             throw e
         }
     }
-}
 
-fun main() {
-    val url = "https://www.vlr.gg/search/?q=a&type=all"
-    val doc = Jsoup.connect(url).get()
+    private fun getSearchResultWithElements(element: Element): SearchResult {
+        val href = element.attr("href")
+        val urlWithHref = "https://www.vlr.gg${href}"
 
-    val list = doc.select("div.wf-card a")
-    for (searchData in list) {
-        val href = searchData.attr("href")
-
-        when {
+        return when {
             href.startsWith("/team") -> {
-//                val imgSrc = searchData.select("img").attr("src")
-//                val name = searchData.select("div.search-item-title")
-//                println(name.getOrNull(0)?.text())
-//                val desc = searchData.select("div.search-item-desc")
-//                println(desc.getOrNull(0)?.text() + desc.getOrNull(1)?.text())
+                val imgSrc = element.select("img").attr("src")
+                val name = element.select("div.search-item-title").text()
+                val desc = element.select("div.search-item-desc")
+                println(desc.getOrNull(0)?.text() + desc.getOrNull(1)?.text())
+
+                SearchResult.SearchTeam(
+                    imgSrc = imgSrc,
+                    href = href,
+                    url = urlWithHref,
+                    name = name,
+                    inactiveStr = null,
+                    previouslyStr = null,
+                    currentlyStr = null
+                )
             }
             href.startsWith("/player") -> {
-//                val imgSrc = searchData.select("img").attr("src")
-//                val nickname = searchData.select("div.search-item-title")
-//                val realName = searchData.select("div.search-item-desc")
-//                println(nickname.text() + realName.text())
+                val imgSrc = element.select("img").attr("src")
+                val nickname = element.select("div.search-item-title").text()
+                val realName = element.select("div.search-item-desc").text()
+
+                SearchResult.SearchPlayer(
+                    imgSrc = imgSrc,
+                    href = href,
+                    url = urlWithHref,
+                    nickname = nickname,
+                    realName = realName
+                )
             }
             href.startsWith("/event") -> {
-                val imgSrc = searchData.select("img").attr("src")
-                val title = searchData.select("div.search-item-title")
-                val desc = searchData.select("div.search-item-desc")
-//                println(desc.text()) // TODO : cliped
+                val imgSrc = element.select("img").attr("src")
+                val title = element.select("div.search-item-title").text()
+                val desc = element.select("div.search-item-desc").text()
+                val descList = desc.split("-")
+
+                SearchResult.SearchEvent(
+                    imgSrc = imgSrc,
+                    href = href,
+                    url = urlWithHref,
+                    title = title,
+                    eventPeriod = descList.getOrNull(1),
+                    prizePool = descList.getOrNull(2)
+                )
             }
             else -> {
-                val imgSrc = searchData.select("img").attr("src")
-                val title = searchData.select("div.search-item-title")
+                val imgSrc = element.select("img").attr("src")
+                val title = element.select("div.search-item-title").text()
+
+                SearchResult.SearchSeries(
+                    imgSrc = imgSrc,
+                    href = href,
+                    url = urlWithHref,
+                    title = title
+                )
             }
         }
     }
