@@ -19,22 +19,11 @@ fun HomeScreen(
     navController: NavHostController
 ) {
 
-    var searchValue by remember { mutableStateOf("") }
-
     Column(
         modifier = modifier
             .fillMaxSize()
             .padding(16.dp)
     ) {
-        OutlinedTextField(
-            modifier = Modifier.fillMaxWidth(),
-            value = searchValue,
-            onValueChange = {},
-            label = {
-                Text(text = "Search...")
-            },
-            enabled = false
-        )
         Row(
             modifier = Modifier
                 .fillMaxWidth()
