@@ -7,7 +7,7 @@ import kr.co.cotton.feature.search.SearchRoute
 const val searchRoute = "search"
 
 fun NavController.navigateToSearch(navOptions: NavOptions? = null) {
-    this.navigate("search", navOptions)
+    this.navigate(searchRoute, navOptions)
 }
 
 fun NavGraphBuilder.searchScreen(navController: NavController) {

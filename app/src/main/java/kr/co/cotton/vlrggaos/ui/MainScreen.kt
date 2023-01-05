@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import kr.co.cotton.core.designsystem.component.CottonTopBar
+import kr.co.cotton.feature.search.navigation.navigateToSearch
 import kr.co.cotton.vlrggaos.navigation.MainNavHost
 
 @Composable
@@ -20,7 +21,8 @@ fun MainScreen(
         topBar = {
             CottonTopBar(
                 title = "Vlr.gg Unoffical",
-                onClickBackBtn = { navController.popBackStack() }
+                onClickBackBtn = { navController.popBackStack() },
+                onClickSearchBtn = { navController.navigateToSearch() }
             )
         }
     ) {

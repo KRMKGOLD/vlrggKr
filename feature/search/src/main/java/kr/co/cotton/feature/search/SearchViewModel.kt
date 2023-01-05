@@ -10,8 +10,6 @@ class SearchViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
 ) : BaseViewModel() {
 
-    private val searchValue: String = checkNotNull(savedStateHandle["searchValue"])
-
     init {
         // TODO : SearchValue 이용한 Search Data Parse 개발
     }

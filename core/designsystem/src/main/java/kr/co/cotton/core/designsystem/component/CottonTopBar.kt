@@ -3,6 +3,7 @@ package kr.co.cotton.core.designsystem.component
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
@@ -19,7 +20,8 @@ import kr.co.cotton.core.designsystem.component.theme.CottonTheme
 @Composable
 fun CottonTopBar(
     title: String,
-    onClickBackBtn: (() -> Unit)? = null
+    onClickBackBtn: (() -> Unit)? = null,
+    onClickSearchBtn: (() -> Unit)? = null
 ) {
     CenterAlignedTopAppBar(
         title = {
@@ -36,6 +38,18 @@ fun CottonTopBar(
                 ) {
                     Icon(
                         imageVector = Icons.Filled.ArrowBack,
+                        contentDescription = null
+                    )
+                }
+            }
+        },
+        actions = {
+            if (onClickSearchBtn != null) {
+                IconButton(
+                    onClick = { onClickSearchBtn() }
+                ) {
+                    Icon(
+                        imageVector = Icons.Filled.Search,
                         contentDescription = null
                     )
                 }
