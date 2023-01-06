@@ -1,5 +1,6 @@
 package kr.co.cotton.feature.search
 
+import androidx.compose.runtime.collectAsState
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -16,8 +17,8 @@ class SearchViewModel @Inject constructor(
     private val searchRepository: SearchRepository
 ) : BaseViewModel() {
 
-    private val _searchData = MutableStateFlow<List<SearchResult>>(emptyList())
-    val searchData: StateFlow<List<SearchResult>> = _searchData.asStateFlow()
+    private val _searchResultList = MutableStateFlow<List<SearchResult>>(emptyList())
+    val searchResultList: StateFlow<List<SearchResult>> = _searchResultList.asStateFlow()
 
     init {
 
@@ -26,7 +27,7 @@ class SearchViewModel @Inject constructor(
     fun getSearchData(searchQuery: String) = viewModelScope.launch {
         searchRepository.getAllSearchData(searchQuery).asResult()
             .map { result ->
-                _searchData.value = when (result) {
+                _searchResultList.value = when (result) {
                     is Result.Success -> result.data
                     is Result.Loading -> emptyList()
                     is Result.Error -> emptyList()

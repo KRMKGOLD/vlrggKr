@@ -5,6 +5,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
@@ -14,8 +16,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import kr.co.cotton.core.data.search.model.SearchResult
 import kr.co.cotton.core.designsystem.component.theme.CottonTheme
 
 @Composable
@@ -24,9 +29,12 @@ internal fun SearchRoute(
     navController: NavController,
     viewModel: SearchViewModel = hiltViewModel()
 ) {
+    val searchResultList by viewModel.searchResultList.collectAsState()
+
     SearchScreen(
         modifier = modifier,
         navController = navController,
+        searchResultList = searchResultList,
         onClickSearchButton = viewModel::getSearchData
     )
 }
@@ -35,6 +43,7 @@ internal fun SearchRoute(
 fun SearchScreen(
     modifier: Modifier = Modifier,
     navController: NavController,
+    searchResultList: List<SearchResult>,
     onClickSearchButton: (String) -> Unit
 ) {
     var searchQuery by remember {
@@ -69,8 +78,15 @@ fun SearchScreen(
             modifier = Modifier.padding(top = 8.dp),
             text = "FOUND 0 RESULTS",
             color = MaterialTheme.colors.primaryVariant,
-            fontSize = 14.sp
+            fontSize = 12.sp
         )
+        LazyColumn(
+            modifier = Modifier.padding(top = 8.dp)
+        ) {
+            items(searchResultList) { searchResult ->
+                Text(text = searchResult.url.orEmpty())
+            }
+        }
     }
 }
 
@@ -80,7 +96,8 @@ fun SearchScreenPreview() {
     CottonTheme {
         SearchScreen(
             navController = rememberNavController(),
-            onClickSearchButton = {}
+            onClickSearchButton = {},
+            searchResultList = emptyList()
         )
     }
 }
