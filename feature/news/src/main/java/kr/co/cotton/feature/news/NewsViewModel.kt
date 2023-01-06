@@ -39,8 +39,3 @@ class NewsViewModel @Inject constructor(
     }
 }
 
-sealed interface NewsUiState {
-    data class Success(val news: List<ValEsportsNews>) : NewsUiState
-    object Error : NewsUiState
-    object Loading : NewsUiState
-}
