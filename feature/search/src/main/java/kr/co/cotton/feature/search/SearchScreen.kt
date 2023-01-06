@@ -1,13 +1,13 @@
 package kr.co.cotton.feature.search
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Divider
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Text
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -24,11 +24,10 @@ internal fun SearchRoute(
     navController: NavController,
     viewModel: SearchViewModel = hiltViewModel()
 ) {
-    var searchValue by remember { mutableStateOf("") }
-
     SearchScreen(
         modifier = modifier,
-        navController = navController
+        navController = navController,
+        onClickSearchButton = viewModel::getSearchData
     )
 }
 
@@ -36,8 +35,9 @@ internal fun SearchRoute(
 fun SearchScreen(
     modifier: Modifier = Modifier,
     navController: NavController,
+    onClickSearchButton: (String) -> Unit
 ) {
-    var searchValue by remember {
+    var searchQuery by remember {
         mutableStateOf("")
     }
 
@@ -48,10 +48,17 @@ fun SearchScreen(
     ) {
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
-            value = searchValue,
-            onValueChange = { searchValue = it },
+            value = searchQuery,
+            onValueChange = { searchQuery = it },
             label = { Text(text = "Search...") },
-            enabled = false
+            trailingIcon = {
+                Icon(
+                    modifier = Modifier
+                        .clickable { onClickSearchButton(searchQuery) },
+                    imageVector = Icons.Filled.Search,
+                    contentDescription = null
+                )
+            },
         )
         Divider(
             modifier = Modifier.padding(top = 16.dp),
@@ -71,6 +78,9 @@ fun SearchScreen(
 @Composable
 fun SearchScreenPreview() {
     CottonTheme {
-        SearchScreen(navController = rememberNavController())
+        SearchScreen(
+            navController = rememberNavController(),
+            onClickSearchButton = {}
+        )
     }
 }
