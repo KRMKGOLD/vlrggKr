@@ -7,6 +7,7 @@ import dagger.hilt.components.SingletonComponent
 import kr.co.cotton.core.data.search.datasource.RemoteSearchDataSource
 import kr.co.cotton.core.data.search.datasource.SearchDataSource
 import kr.co.cotton.core.data.search.repository.DefaultSearchRepository
+import kr.co.cotton.core.data.search.repository.SearchRepository
 import javax.inject.Named
 
 @Module
@@ -22,5 +23,5 @@ interface SearchModule {
     @Binds
     fun bindsSearchRepository(
         searchRepository: DefaultSearchRepository
-    ): DefaultSearchRepository
+    ): SearchRepository
 }
