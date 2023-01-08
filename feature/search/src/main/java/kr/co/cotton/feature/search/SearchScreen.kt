@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import kr.co.cotton.core.designsystem.component.common.CottonErrorView
 import kr.co.cotton.core.designsystem.component.common.CottonLoadingView
 import kr.co.cotton.core.designsystem.component.theme.CottonTheme
 
@@ -95,10 +96,11 @@ fun SearchScreen(
                 }
                 SearchListUiState.Error -> {
                     item {
-                        CottonLoadingView(
-                            modifier = Modifier.fillMaxSize()
+                        CottonErrorView(
+                            modifier = Modifier.fillMaxSize(),
+                            errorTitle = "Error!",
+                            errorMessage = "Failed to get data. Please try again later."
                         )
-                        // TODO : CottonErrorView()
                     }
                 }
             }
