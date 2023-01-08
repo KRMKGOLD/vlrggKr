@@ -28,7 +28,7 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import com.murgupluoglu.flagkit.FlagKit
 import kr.co.cotton.core.data.sportsnews.model.ValEsportsNews
-import kr.co.cotton.core.designsystem.component.CottonLoadingView
+import kr.co.cotton.core.designsystem.component.common.CottonLoadingView
 
 @Composable
 internal fun NewsRoute(
