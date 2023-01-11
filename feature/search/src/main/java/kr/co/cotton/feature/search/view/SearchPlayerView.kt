@@ -1,12 +1,13 @@
 package kr.co.cotton.feature.search.view
 
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kr.co.cotton.core.data.search.model.SearchResult
+import kr.co.cotton.core.designsystem.component.common.CottonCard
 import kr.co.cotton.core.designsystem.component.theme.CottonTheme
 
 @Composable
@@ -15,9 +16,9 @@ fun SearchPlayerView(
     searchPlayer: SearchResult.SearchPlayer,
     onClickCard: (SearchResult.SearchPlayer) -> Unit
 ) {
-    Card(
-        modifier = modifier,
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+    CottonCard(
+        modifier = modifier.fillMaxWidth(),
+        elevation = 4.dp
     ) {
 
     }

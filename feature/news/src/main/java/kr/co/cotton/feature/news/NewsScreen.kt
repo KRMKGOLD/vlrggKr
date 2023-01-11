@@ -30,6 +30,7 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import com.murgupluoglu.flagkit.FlagKit
 import kr.co.cotton.core.data.sportsnews.model.ValEsportsNews
+import kr.co.cotton.core.designsystem.component.common.CottonCard
 import kr.co.cotton.core.designsystem.component.common.CottonLoadingView
 import kr.co.cotton.core.designsystem.component.theme.CottonTheme
 
@@ -117,10 +118,9 @@ fun NewsCard(
 
     val flag = news.flagISO?.let { FlagKit.getResId(LocalContext.current, it) }
 
-    Card(
+    CottonCard(
         modifier = modifier,
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.White)
+        elevation = 4.dp
     ) {
         if (news.isDataEmpty) {
             Column(
