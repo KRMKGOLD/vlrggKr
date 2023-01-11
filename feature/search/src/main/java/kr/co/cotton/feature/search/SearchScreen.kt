@@ -1,12 +1,15 @@
 package kr.co.cotton.feature.search
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -40,6 +43,7 @@ internal fun SearchRoute(
     )
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SearchScreen(
     modifier: Modifier = Modifier,
@@ -72,13 +76,13 @@ fun SearchScreen(
         )
         Divider(
             modifier = Modifier.padding(top = 16.dp),
-            color = MaterialTheme.colors.primary,
+            color = MaterialTheme.colorScheme.primary,
             thickness = 2.dp
         )
         Text(
             modifier = Modifier.padding(top = 8.dp),
             text = "FOUND 0 RESULTS",
-            color = MaterialTheme.colors.primaryVariant,
+            color = MaterialTheme.colorScheme.onPrimary,
             fontSize = 12.sp
         )
         LazyColumn(
@@ -91,7 +95,10 @@ fun SearchScreen(
                     items(searchListUiState.news) { searchResult ->
                         when (searchResult) {
                             is SearchResult.SearchEvent -> SearchEventView()
-                            is SearchResult.SearchPlayer -> SearchPlayerView(modifier, searchResult, {})
+                            is SearchResult.SearchPlayer -> SearchPlayerView(
+                                modifier,
+                                searchResult,
+                                {})
                             is SearchResult.SearchSeries -> SearchSeriesView()
                             is SearchResult.SearchTeam -> SearchTeamView()
                         }

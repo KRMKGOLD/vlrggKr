@@ -1,6 +1,7 @@
 package kr.co.cotton.core.designsystem.component.theme
 
 import android.app.Activity
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
@@ -76,7 +77,7 @@ private val DarkColors = darkColorScheme(
 )
 
 @Composable
-fun CottonTheme(content: @Composable () -> Unit) {
+fun CottonTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
     val view = LocalView.current
 
     if (!view.isInEditMode) {
@@ -88,7 +89,11 @@ fun CottonTheme(content: @Composable () -> Unit) {
     }
 
     MaterialTheme(
-        colorScheme = LightColors,
+        colorScheme = if (darkTheme) {
+            LightColors
+        } else {
+            DarkColors
+        },
         typography = CottonTypography,
         shapes = CottonShape,
         content = content
