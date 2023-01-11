@@ -38,8 +38,8 @@ val spoqaHanSansNeoFontFamily = FontFamily(
 val CottonTypography = Typography(
     titleLarge = TextStyle(
         fontFamily = spoqaHanSansNeoFontFamily,
-        lineHeight = 28.sp,
-        fontSize = 22.sp,
+        lineHeight = 30.sp,
+        fontSize = 24.sp,
         letterSpacing = 0.0.sp,
         fontWeight = FontWeight.Normal
     ),

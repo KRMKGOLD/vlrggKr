@@ -10,10 +10,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import kr.co.cotton.core.designsystem.component.theme.CottonTheme
 
 @Composable
@@ -37,13 +35,12 @@ fun CottonErrorView(
         Text(
             modifier = Modifier.padding(top = 16.dp),
             text = errorTitle,
-            fontSize = 24.sp,
-            fontWeight = FontWeight.Bold
+            style = MaterialTheme.typography.titleLarge
         )
         Text(
             modifier = Modifier.padding(top = 16.dp),
             text = errorMessage,
-            fontSize = 16.sp
+            style = MaterialTheme.typography.bodyLarge
         )
     }
 }

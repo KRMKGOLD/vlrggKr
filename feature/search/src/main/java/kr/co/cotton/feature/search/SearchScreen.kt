@@ -14,7 +14,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
@@ -76,14 +75,12 @@ fun SearchScreen(
         )
         Divider(
             modifier = Modifier.padding(top = 16.dp),
-            color = MaterialTheme.colorScheme.primary,
             thickness = 2.dp
         )
         Text(
             modifier = Modifier.padding(top = 8.dp),
             text = "FOUND 0 RESULTS",
-            color = MaterialTheme.colorScheme.onPrimary,
-            fontSize = 12.sp
+            style = MaterialTheme.typography.labelMedium
         )
         LazyColumn(
             modifier = Modifier
