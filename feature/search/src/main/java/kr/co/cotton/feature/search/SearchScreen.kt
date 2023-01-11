@@ -15,9 +15,14 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import kr.co.cotton.core.data.search.model.SearchResult
 import kr.co.cotton.core.designsystem.component.common.CottonErrorView
 import kr.co.cotton.core.designsystem.component.common.CottonLoadingView
 import kr.co.cotton.core.designsystem.component.theme.CottonTheme
+import kr.co.cotton.feature.search.view.SearchEventView
+import kr.co.cotton.feature.search.view.SearchPlayerView
+import kr.co.cotton.feature.search.view.SearchSeriesView
+import kr.co.cotton.feature.search.view.SearchTeamView
 
 @Composable
 internal fun SearchRoute(
@@ -84,7 +89,12 @@ fun SearchScreen(
             when (searchListUiState) {
                 is SearchListUiState.Success -> {
                     items(searchListUiState.news) { searchResult ->
-                        Text(text = searchResult.url.orEmpty())
+                        when (searchResult) {
+                            is SearchResult.SearchEvent -> SearchEventView()
+                            is SearchResult.SearchPlayer -> SearchPlayerView()
+                            is SearchResult.SearchSeries -> SearchSeriesView()
+                            is SearchResult.SearchTeam -> SearchTeamView()
+                        }
                     }
                 }
                 SearchListUiState.Loading -> {
