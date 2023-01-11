@@ -90,12 +90,14 @@ fun SearchScreen(
             when (searchListUiState) {
                 is SearchListUiState.Success -> {
                     items(searchListUiState.news) { searchResult ->
+                        val itemModifier = Modifier.padding(top = 16.dp)
+
                         when (searchResult) {
                             is SearchResult.SearchEvent -> SearchEventView()
                             is SearchResult.SearchPlayer -> SearchPlayerView(
-                                modifier,
-                                searchResult,
-                                {})
+                                itemModifier,
+                                searchResult
+                            ) {}
                             is SearchResult.SearchSeries -> SearchSeriesView()
                             is SearchResult.SearchTeam -> SearchTeamView()
                         }
