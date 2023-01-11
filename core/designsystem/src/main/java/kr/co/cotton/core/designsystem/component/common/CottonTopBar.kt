@@ -20,7 +20,7 @@ fun CottonTopBar(
         title = {
             Text(
                 text = title,
-                style = MaterialTheme.typography.bodyLarge
+                style = MaterialTheme.typography.titleMedium
             )
         },
         navigationIcon = {
