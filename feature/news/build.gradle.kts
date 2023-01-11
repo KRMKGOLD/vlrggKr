@@ -80,8 +80,7 @@ dependencies {
     implementation(DependencyInfo.Hilt.compose)
     kapt(DependencyInfo.Hilt.compiler)
 
-    implementation(DependencyInfo.Glide.glide)
-    kapt(DependencyInfo.Glide.compiler)
+    implementation(DependencyInfo.Coil.coil)
 
     implementation(DependencyInfo.FlagKit.flagKit)
 }

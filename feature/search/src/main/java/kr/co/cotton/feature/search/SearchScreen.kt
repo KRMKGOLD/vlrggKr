@@ -91,7 +91,7 @@ fun SearchScreen(
                     items(searchListUiState.news) { searchResult ->
                         when (searchResult) {
                             is SearchResult.SearchEvent -> SearchEventView()
-                            is SearchResult.SearchPlayer -> SearchPlayerView()
+                            is SearchResult.SearchPlayer -> SearchPlayerView(modifier, searchResult, {})
                             is SearchResult.SearchSeries -> SearchSeriesView()
                             is SearchResult.SearchTeam -> SearchTeamView()
                         }

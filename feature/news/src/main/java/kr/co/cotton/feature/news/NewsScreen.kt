@@ -7,6 +7,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material3.Card
@@ -30,6 +31,7 @@ import androidx.paging.compose.items
 import com.murgupluoglu.flagkit.FlagKit
 import kr.co.cotton.core.data.sportsnews.model.ValEsportsNews
 import kr.co.cotton.core.designsystem.component.common.CottonLoadingView
+import kr.co.cotton.core.designsystem.component.theme.CottonTheme
 
 @Composable
 internal fun NewsRoute(
@@ -117,7 +119,8 @@ fun NewsCard(
 
     Card(
         modifier = modifier,
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+        colors = CardDefaults.cardColors(containerColor = Color.White)
     ) {
         if (news.isDataEmpty) {
             Column(
@@ -190,13 +193,15 @@ fun NewsCard(
 @Preview(showBackground = true)
 @Composable
 fun NewsCardPreview() {
-    NewsCard(
-        news = ValEsportsNews(
-            title = "Gen.G reveal all-Korean roster",
-            description = "VLR.gg's roster tracker keeps up to date on roster moves in the Pacific region in view of the upcome asdfasdfasdfasdfasdfasdfasdf",
-            flagISO = "KR",
-            date = "October 22, 2022",
-            writer = "Dr.Sun Cotton"
+    CottonTheme {
+        NewsCard(
+            news = ValEsportsNews(
+                title = "Gen.G reveal all-Korean roster",
+                description = "VLR.gg's roster tracker keeps up to date on roster moves in the Pacific region in view of the upcome asdfasdfasdfasdfasdfasdfasdf",
+                flagISO = "KR",
+                date = "October 22, 2022",
+                writer = "Dr.Sun Cotton"
+            )
         )
-    )
+    }
 }

@@ -21,7 +21,7 @@ fun CottonTheme(content: @Composable () -> Unit) {
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
-            window.statusBarColor = LightColorPalette.primary.toArgb()
+            window.statusBarColor = Gray200.toArgb()
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = true
         }
     }

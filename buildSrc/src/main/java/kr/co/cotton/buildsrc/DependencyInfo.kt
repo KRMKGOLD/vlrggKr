@@ -57,12 +57,11 @@ object DependencyInfo {
         const val compose = "androidx.hilt:hilt-navigation-compose:1.0.0"
     }
 
-    object Glide {
+    object Coil {
 
-        const val version = "4.13.2"
+        const val version = "2.2.2"
 
-        const val glide = "com.github.bumptech.glide:glide:$version"
-        const val compiler = "com.github.bumptech.glide:compiler:$version"
+        const val coil = "io.coil-kt:coil-compose:$version"
     }
 
     object FlagKit {
