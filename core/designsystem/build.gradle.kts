@@ -43,7 +43,6 @@ dependencies {
 
     implementation(DependencyInfo.AndroidX.ktx)
     implementation(DependencyInfo.AndroidX.Compose.ui)
-    implementation(DependencyInfo.AndroidX.Compose.material)
     implementation(DependencyInfo.AndroidX.Compose.material3)
     implementation(DependencyInfo.AndroidX.Compose.preview)
     implementation(DependencyInfo.AndroidX.Compose.compose)
