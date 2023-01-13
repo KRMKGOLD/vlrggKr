@@ -65,3 +65,8 @@ val md_theme_dark_outlineVariant = Color(0xFF44474F)
 val md_theme_dark_scrim = Color(0xFF000000)
 
 val seed = Color(0xFFCBDAFF)
+
+/**
+ * Etc Color
+ */
+val prize_pool_color = Color(0xFF61B876)

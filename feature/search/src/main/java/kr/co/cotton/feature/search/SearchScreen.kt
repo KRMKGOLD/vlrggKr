@@ -93,7 +93,10 @@ fun SearchScreen(
                         val itemModifier = Modifier.padding(top = 16.dp)
 
                         when (searchResult) {
-                            is SearchResult.SearchEvent -> SearchEventView()
+                            is SearchResult.SearchEvent -> SearchEventView(
+                                itemModifier,
+                                searchResult
+                            ) {}
                             is SearchResult.SearchPlayer -> SearchPlayerView(
                                 itemModifier,
                                 searchResult

@@ -55,7 +55,7 @@ fun SearchPlayerView(
                 if (!searchPlayer.realName.isNullOrEmpty()) {
                     Text(
                         modifier = Modifier
-                            .padding(top = 4.dp)
+                            .padding(top = 8.dp)
                             .fillMaxWidth(),
                         style = MaterialTheme.typography.bodyMedium,
                         text = searchPlayer.realName.orEmpty()
@@ -72,9 +72,6 @@ fun SearchPlayerViewPreview() {
     CottonTheme {
         SearchPlayerView(
             searchPlayer = SearchResult.SearchPlayer(
-                imgSrc = "https://www.shutterstock.com/image-vector/fake-rubber-stamp-grunge-seal-260nw-1427510693.jpg",
-                href = "href",
-                url = "url",
                 nickname = "MaKo",
                 realName = "Kim Myeong-gwan (김명관)"
             ),

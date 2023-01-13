@@ -97,14 +97,18 @@ class RemoteSearchDataSource @Inject constructor() : SearchDataSource {
             href.startsWith("/event") -> {
                 val title = element.select("div.search-item-title").text()
                 val desc = element.select("div.search-item-desc").text()
-                val descList = desc.split("-")
+                val descList = desc.split("–").map { it.trim() }
+                val eventPeriodList = descList.getOrNull(1)
+                val eventPeriod = eventPeriodList
+                    ?.split("to")
+                    ?.joinToString(" ~ ") { it.trim() }
 
                 SearchResult.SearchEvent(
                     imgSrc = imgSrcWithUrl,
                     href = href,
                     url = urlWithHref,
                     title = title,
-                    eventPeriod = descList.getOrNull(1),
+                    eventPeriod = eventPeriod,
                     prizePool = descList.getOrNull(2)
                 )
             }
