@@ -55,9 +55,17 @@ class RemoteSearchDataSource @Inject constructor() : SearchDataSource {
         val href = element.attr("href")
         val urlWithHref = "https://www.vlr.gg${href}"
 
+        val imgSrc = element.select("img").attr("src")
+        val imgSrcWithUrl = if (imgSrc.startsWith("//")) {
+            "https:$imgSrc"
+        } else if (imgSrc.startsWith("/")) {
+            "https://www.vlr.gg$imgSrc"
+        } else {
+            imgSrc
+        }
+
         return when {
             href.startsWith("/team") -> {
-                val imgSrc = element.select("img").attr("src")
                 val name = element.select("div.search-item-title")
                 val desc = element.select("div.search-item-desc")
 
@@ -66,7 +74,7 @@ class RemoteSearchDataSource @Inject constructor() : SearchDataSource {
                 val inactiveStr = splitName.getOrNull(1)?.dropLast(1)?.trim()
 
                 SearchResult.SearchTeam(
-                    imgSrc = imgSrc,
+                    imgSrc = imgSrcWithUrl,
                     href = href,
                     url = urlWithHref,
                     name = teamName,
@@ -75,12 +83,11 @@ class RemoteSearchDataSource @Inject constructor() : SearchDataSource {
                 )
             }
             href.startsWith("/player") -> {
-                val imgSrc = element.select("img").attr("src")
                 val nickname = element.select("div.search-item-title").text()
                 val realName = element.select("div.search-item-desc").text()
 
                 SearchResult.SearchPlayer(
-                    imgSrc = imgSrc,
+                    imgSrc = imgSrcWithUrl,
                     href = href,
                     url = urlWithHref,
                     nickname = nickname,
@@ -88,13 +95,12 @@ class RemoteSearchDataSource @Inject constructor() : SearchDataSource {
                 )
             }
             href.startsWith("/event") -> {
-                val imgSrc = element.select("img").attr("src")
                 val title = element.select("div.search-item-title").text()
                 val desc = element.select("div.search-item-desc").text()
                 val descList = desc.split("-")
 
                 SearchResult.SearchEvent(
-                    imgSrc = imgSrc,
+                    imgSrc = imgSrcWithUrl,
                     href = href,
                     url = urlWithHref,
                     title = title,
@@ -103,11 +109,10 @@ class RemoteSearchDataSource @Inject constructor() : SearchDataSource {
                 )
             }
             else -> {
-                val imgSrc = element.select("img").attr("src")
                 val title = element.select("div.search-item-title").text()
 
                 SearchResult.SearchSeries(
-                    imgSrc = imgSrc,
+                    imgSrc = imgSrcWithUrl,
                     href = href,
                     url = urlWithHref,
                     title = title
