@@ -33,7 +33,7 @@ fun SearchPlayerView(
                 .fillMaxWidth()
         ) {
             AsyncImage(
-                modifier = Modifier.size(60.dp),
+                modifier = Modifier.size(80.dp),
                 model = ImageRequest.Builder(LocalContext.current)
                     .data(searchPlayer.imgSrc)
                     .crossfade(true)
