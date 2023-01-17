@@ -38,7 +38,7 @@ fun SearchSeriesView(
                 .fillMaxWidth()
         ) {
             AsyncImage(
-                modifier = Modifier.size(60.dp),
+                modifier = Modifier.size(80.dp),
                 model = ImageRequest.Builder(LocalContext.current)
                     .data(searchSeries.imgSrc)
                     .crossfade(true)
