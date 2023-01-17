@@ -1,7 +1,12 @@
 package kr.co.cotton.feature.search.view
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -14,7 +19,6 @@ import coil.request.ImageRequest
 import kr.co.cotton.core.data.search.model.SearchResult
 import kr.co.cotton.core.designsystem.component.common.CottonCard
 import kr.co.cotton.core.designsystem.component.theme.CottonTheme
-import kr.co.cotton.core.designsystem.component.theme.prize_pool_color
 
 @Composable
 fun SearchSeriesView(
@@ -55,7 +59,7 @@ fun SearchSeriesView(
                     modifier = Modifier
                         .padding(top = 8.dp),
                     style = MaterialTheme.typography.bodyMedium,
-                    text = "Series",
+                    text = "Series"
                 )
             }
         }
