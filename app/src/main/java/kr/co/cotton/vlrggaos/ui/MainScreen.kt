@@ -13,24 +13,11 @@ import kr.co.cotton.core.designsystem.component.common.CottonTopBar
 import kr.co.cotton.feature.search.navigation.navigateToSearch
 import kr.co.cotton.vlrggaos.navigation.MainNavHost
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(
     navController: NavHostController = rememberNavController()
 ) {
-    Scaffold(
-        modifier = Modifier.fillMaxSize(),
-        topBar = {
-            CottonTopBar(
-                title = "Vlr.gg Unoffical",
-                onClickBackBtn = { navController.popBackStack() },
-                onClickSearchBtn = { navController.navigateToSearch() }
-            )
-        }
-    ) {
-        Column(modifier = Modifier.padding(it)) {
-            MainNavHost(navController = navController)
-        }
+    Column(modifier = Modifier.fillMaxSize()) {
+        MainNavHost(navController = navController)
     }
 }
-

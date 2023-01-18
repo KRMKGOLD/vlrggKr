@@ -20,7 +20,10 @@ import androidx.navigation.compose.rememberNavController
 import kr.co.cotton.core.data.search.model.SearchResult
 import kr.co.cotton.core.designsystem.component.common.CottonErrorView
 import kr.co.cotton.core.designsystem.component.common.CottonLoadingView
+import kr.co.cotton.core.designsystem.component.common.CottonScaffold
+import kr.co.cotton.core.designsystem.component.common.CottonTopBar
 import kr.co.cotton.core.designsystem.component.theme.CottonTheme
+import kr.co.cotton.feature.search.navigation.navigateToSearch
 import kr.co.cotton.feature.search.view.SearchEventView
 import kr.co.cotton.feature.search.view.SearchPlayerView
 import kr.co.cotton.feature.search.view.SearchSeriesView
@@ -54,82 +57,92 @@ fun SearchScreen(
         mutableStateOf("")
     }
 
-    Column(
-        modifier = modifier
-            .fillMaxSize()
-            .padding(16.dp)
+    CottonScaffold(
+        modifier = Modifier.fillMaxSize(),
+        topBar = {
+            CottonTopBar(
+                title = "Search",
+                onClickBackBtn = { navController.popBackStack() }
+            )
+        }
     ) {
-        OutlinedTextField(
-            modifier = Modifier.fillMaxWidth(),
-            value = searchQuery,
-            onValueChange = { searchQuery = it },
-            label = { Text(text = "Search...") },
-            trailingIcon = {
-                Icon(
-                    modifier = Modifier
-                        .clickable { onClickSearchButton(searchQuery) },
-                    imageVector = Icons.Filled.Search,
-                    contentDescription = null
-                )
-            },
-        )
-        Divider(
-            modifier = Modifier.padding(top = 16.dp),
-            thickness = 2.dp
-        )
-        Text(
-            modifier = Modifier.padding(top = 8.dp),
-            text = "FOUND 0 RESULTS",
-            style = MaterialTheme.typography.labelMedium
-        )
-        LazyColumn(
-            modifier = Modifier
-                .padding(top = 8.dp)
+        Column(
+            modifier = modifier
                 .fillMaxSize()
+                .padding(16.dp)
         ) {
-            when (searchListUiState) {
-                is SearchListUiState.Success -> {
-                    items(searchListUiState.news) { searchResult ->
-                        val itemModifier = Modifier.padding(top = 16.dp)
+            OutlinedTextField(
+                modifier = Modifier.fillMaxWidth(),
+                value = searchQuery,
+                onValueChange = { searchQuery = it },
+                label = { Text(text = "Search...") },
+                trailingIcon = {
+                    Icon(
+                        modifier = Modifier
+                            .clickable { onClickSearchButton(searchQuery) },
+                        imageVector = Icons.Filled.Search,
+                        contentDescription = null
+                    )
+                },
+            )
+            Divider(
+                modifier = Modifier.padding(top = 16.dp),
+                thickness = 2.dp
+            )
+            Text(
+                modifier = Modifier.padding(top = 8.dp),
+                text = "FOUND 0 RESULTS",
+                style = MaterialTheme.typography.labelMedium
+            )
+            LazyColumn(
+                modifier = Modifier
+                    .padding(top = 8.dp)
+                    .fillMaxSize()
+            ) {
+                when (searchListUiState) {
+                    is SearchListUiState.Success -> {
+                        items(searchListUiState.news) { searchResult ->
+                            val itemModifier = Modifier.padding(top = 16.dp)
 
-                        when (searchResult) {
-                            is SearchResult.SearchEvent -> SearchEventView(
-                                modifier = itemModifier,
-                                searchEvent = searchResult,
-                                onClickCard = {}
-                            )
-                            is SearchResult.SearchPlayer -> SearchPlayerView(
-                                modifier = itemModifier,
-                                searchPlayer = searchResult,
-                                onClickCard = {}
-                            )
-                            is SearchResult.SearchSeries -> SearchSeriesView(
-                                modifier = itemModifier,
-                                searchSeries = searchResult,
-                                onClickCard = {}
-                            )
-                            is SearchResult.SearchTeam -> SearchTeamView(
-                                modifier = itemModifier,
-                                searchTeam = searchResult,
-                                onClickCard = {}
+                            when (searchResult) {
+                                is SearchResult.SearchEvent -> SearchEventView(
+                                    modifier = itemModifier,
+                                    searchEvent = searchResult,
+                                    onClickCard = {}
+                                )
+                                is SearchResult.SearchPlayer -> SearchPlayerView(
+                                    modifier = itemModifier,
+                                    searchPlayer = searchResult,
+                                    onClickCard = {}
+                                )
+                                is SearchResult.SearchSeries -> SearchSeriesView(
+                                    modifier = itemModifier,
+                                    searchSeries = searchResult,
+                                    onClickCard = {}
+                                )
+                                is SearchResult.SearchTeam -> SearchTeamView(
+                                    modifier = itemModifier,
+                                    searchTeam = searchResult,
+                                    onClickCard = {}
+                                )
+                            }
+                        }
+                    }
+                    SearchListUiState.Loading -> {
+                        item {
+                            CottonLoadingView(
+                                modifier = Modifier.fillMaxSize()
                             )
                         }
                     }
-                }
-                SearchListUiState.Loading -> {
-                    item {
-                        CottonLoadingView(
-                            modifier = Modifier.fillMaxSize()
-                        )
-                    }
-                }
-                SearchListUiState.Error -> {
-                    item {
-                        CottonErrorView(
-                            modifier = Modifier.fillMaxSize(),
-                            errorTitle = "Error!",
-                            errorMessage = "Failed to get data. Please try again later."
-                        )
+                    SearchListUiState.Error -> {
+                        item {
+                            CottonErrorView(
+                                modifier = Modifier.fillMaxSize(),
+                                errorTitle = "Error!",
+                                errorMessage = "Failed to get data. Please try again later."
+                            )
+                        }
                     }
                 }
             }
