@@ -98,7 +98,8 @@ fun NewsScreen(
 
             esportsNewsPagingList.apply {
                 when {
-                    loadState.refresh is LoadState.Loading || loadState.append is LoadState.Loading -> {
+                    loadState.refresh is LoadState.Loading ||
+                            loadState.append is LoadState.Loading -> {
                         item {
                             CottonLoadingView(
                                 modifier = Modifier
@@ -112,7 +113,7 @@ fun NewsScreen(
                         item {
                             Text(
                                 modifier = Modifier.fillParentMaxSize(),
-                                text = e.error.localizedMessage!!,
+                                text = e.error.localizedMessage!!
                             )
                         }
                     }

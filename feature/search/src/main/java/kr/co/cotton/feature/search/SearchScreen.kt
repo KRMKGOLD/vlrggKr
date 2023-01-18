@@ -23,7 +23,6 @@ import kr.co.cotton.core.designsystem.component.common.CottonLoadingView
 import kr.co.cotton.core.designsystem.component.common.CottonScaffold
 import kr.co.cotton.core.designsystem.component.common.CottonTopBar
 import kr.co.cotton.core.designsystem.component.theme.CottonTheme
-import kr.co.cotton.feature.search.navigation.navigateToSearch
 import kr.co.cotton.feature.search.view.SearchEventView
 import kr.co.cotton.feature.search.view.SearchPlayerView
 import kr.co.cotton.feature.search.view.SearchSeriesView
@@ -83,7 +82,7 @@ fun SearchScreen(
                         imageVector = Icons.Filled.Search,
                         contentDescription = null
                     )
-                },
+                }
             )
             Divider(
                 modifier = Modifier.padding(top = 16.dp),
