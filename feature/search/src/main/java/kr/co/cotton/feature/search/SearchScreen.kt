@@ -94,15 +94,25 @@ fun SearchScreen(
 
                         when (searchResult) {
                             is SearchResult.SearchEvent -> SearchEventView(
-                                itemModifier,
-                                searchResult
-                            ) {}
+                                modifier = itemModifier,
+                                searchEvent = searchResult,
+                                onClickCard = {}
+                            )
                             is SearchResult.SearchPlayer -> SearchPlayerView(
-                                itemModifier,
-                                searchResult
-                            ) {}
-                            is SearchResult.SearchSeries -> SearchSeriesView()
-                            is SearchResult.SearchTeam -> SearchTeamView()
+                                modifier = itemModifier,
+                                searchPlayer = searchResult,
+                                onClickCard = {}
+                            )
+                            is SearchResult.SearchSeries -> SearchSeriesView(
+                                modifier = itemModifier,
+                                searchSeries = searchResult,
+                                onClickCard = {}
+                            )
+                            is SearchResult.SearchTeam -> SearchTeamView(
+                                modifier = itemModifier,
+                                searchTeam = searchResult,
+                                onClickCard = {}
+                            )
                         }
                     }
                 }
