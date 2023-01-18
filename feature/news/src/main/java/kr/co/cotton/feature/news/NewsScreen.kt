@@ -98,8 +98,8 @@ fun NewsScreen(
 
             esportsNewsPagingList.apply {
                 when {
-                    loadState.refresh is LoadState.Loading ||
-                            loadState.append is LoadState.Loading -> {
+                    loadState.refresh is LoadState.Loading
+                            || loadState.append is LoadState.Loading -> {
                         item {
                             CottonLoadingView(
                                 modifier = Modifier
@@ -108,12 +108,13 @@ fun NewsScreen(
                             )
                         }
                     }
-                    loadState.refresh is LoadState.Error || loadState.append is LoadState.Error -> {
+                    loadState.refresh is LoadState.Error
+                            || loadState.append is LoadState.Error -> {
                         val e = esportsNewsPagingList.loadState.refresh as LoadState.Error
                         item {
                             Text(
                                 modifier = Modifier.fillParentMaxSize(),
-                                text = e.error.localizedMessage!!
+                                text = e.error.localizedMessage.orEmpty()
                             )
                         }
                     }
