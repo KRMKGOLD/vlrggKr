@@ -22,9 +22,9 @@ fun MainNavHost(
     ) {
         homeScreen(navController)
         newsScreen(navController)
+        searchScreen(navController)
         composable("matches") {
             // TODO : MatchesScreen
         }
-        searchScreen(navController)
     }
 }

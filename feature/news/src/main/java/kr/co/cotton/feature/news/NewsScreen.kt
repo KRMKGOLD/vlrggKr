@@ -6,6 +6,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -32,6 +33,8 @@ import com.murgupluoglu.flagkit.FlagKit
 import kr.co.cotton.core.data.sportsnews.model.ValEsportsNews
 import kr.co.cotton.core.designsystem.component.common.CottonCard
 import kr.co.cotton.core.designsystem.component.common.CottonLoadingView
+import kr.co.cotton.core.designsystem.component.common.CottonScaffold
+import kr.co.cotton.core.designsystem.component.common.CottonTopBar
 import kr.co.cotton.core.designsystem.component.theme.CottonTheme
 
 @Composable
@@ -69,39 +72,49 @@ fun NewsScreen(
 ) {
     val state = rememberLazyListState()
 
-    LazyColumn(
-        modifier = modifier,
-        state = state,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        items(esportsNewsPagingList) { news ->
-            if (news != null) {
-                NewsCard(
-                    modifier = Modifier.padding(top = 16.dp, start = 16.dp, end = 16.dp),
-                    news = news,
-                    onClickCard = onClickItem
-                )
-            }
+    CottonScaffold(
+        modifier = Modifier.fillMaxSize(),
+        topBar = {
+            CottonTopBar(
+                title = "News",
+                onClickBackBtn = { navController.popBackStack() }
+            )
         }
-
-        esportsNewsPagingList.apply {
-            when {
-                loadState.refresh is LoadState.Loading || loadState.append is LoadState.Loading -> {
-                    item {
-                        CottonLoadingView(
-                            modifier = Modifier
-                                .fillParentMaxSize()
-                                .padding(vertical = 16.dp)
-                        )
-                    }
+    ) {
+        LazyColumn(
+            modifier = modifier,
+            state = state,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            items(esportsNewsPagingList) { news ->
+                if (news != null) {
+                    NewsCard(
+                        modifier = Modifier.padding(top = 16.dp, start = 16.dp, end = 16.dp),
+                        news = news,
+                        onClickCard = onClickItem
+                    )
                 }
-                loadState.refresh is LoadState.Error || loadState.append is LoadState.Error -> {
-                    val e = esportsNewsPagingList.loadState.refresh as LoadState.Error
-                    item {
-                        Text(
-                            modifier = Modifier.fillParentMaxSize(),
-                            text = e.error.localizedMessage!!,
-                        )
+            }
+
+            esportsNewsPagingList.loadState.also { state ->
+                when {
+                    state.refresh is LoadState.Loading || state.append is LoadState.Loading -> {
+                        item {
+                            CottonLoadingView(
+                                modifier = Modifier
+                                    .fillParentMaxSize()
+                                    .padding(vertical = 16.dp)
+                            )
+                        }
+                    }
+                    state.refresh is LoadState.Error || state.append is LoadState.Error -> {
+                        val e = esportsNewsPagingList.loadState.refresh as LoadState.Error
+                        item {
+                            Text(
+                                modifier = Modifier.fillParentMaxSize(),
+                                text = e.error.localizedMessage.orEmpty()
+                            )
+                        }
                     }
                 }
             }
