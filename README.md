@@ -16,3 +16,9 @@ nowinandroid 부분은 domain 레이어가 존재하지만, jsoup을 이용하�
 - Core Module은 서버 통신 부분 로직 (및 디자인시스템) 을 위한 모듈입니다.
 3. Feature Module
 - Feature Module은 App Module에 있는 MainActivity(One Activity) 를 위한 모듈로, 화면 개발에 대해서는 해당 모듈에서 담당합니다.
+
+## Git Flow
+
+간단한 개인 프로젝트이자 배포에 목적을 두지 않고 있는 프로젝트입니다.
+따라서 develop 브랜치의 역할을 main 브랜치에 이관하고 각 화면 개발을 깃허브 이슈로 생성, 각 이슈에 대해서 feature 브랜치를 생성해 개발합니다.
+![image](https://user-images.githubusercontent.com/37148833/213862783-b5379544-9112-4829-aa80-f67e1b7fb2af.png)
