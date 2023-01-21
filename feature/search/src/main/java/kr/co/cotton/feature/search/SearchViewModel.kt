@@ -31,10 +31,14 @@ class SearchViewModel @Inject constructor(
                 }
             }.collect()
     }
+
+    fun onClickCard(searchResult: SearchResult) {
+
+    }
 }
 
 sealed interface SearchListUiState {
-    data class Success(val news: List<SearchResult>) : SearchListUiState
+    data class Success(val searchResult: List<SearchResult>) : SearchListUiState
     object Loading : SearchListUiState
     object Error : SearchListUiState
 }

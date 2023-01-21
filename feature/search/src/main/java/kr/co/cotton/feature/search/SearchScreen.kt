@@ -1,5 +1,7 @@
 package kr.co.cotton.feature.search
 
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,9 +16,11 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
@@ -57,6 +61,17 @@ fun SearchScreen(
 ) {
     var searchQuery by remember {
         mutableStateOf("")
+    }
+    val context = LocalContext.current
+    val onClickCard: (SearchResult) -> Unit = {
+        ContextCompat.startActivity(
+            context,
+            Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse(it.url)
+            ),
+            null
+        )
     }
 
     CottonScaffold(
@@ -102,7 +117,7 @@ fun SearchScreen(
                 modifier = Modifier.padding(top = 8.dp),
                 text = when (searchListUiState) {
                     is SearchListUiState.Success -> {
-                        "FOUND ${searchListUiState.news.size} RESULTS"
+                        "FOUND ${searchListUiState.searchResult.size} RESULTS"
                     }
                     else -> "FOUND 0 RESULTS"
                 },
@@ -115,29 +130,29 @@ fun SearchScreen(
             ) {
                 when (searchListUiState) {
                     is SearchListUiState.Success -> {
-                        items(searchListUiState.news) { searchResult ->
+                        items(searchListUiState.searchResult) { searchResult ->
                             val itemModifier = Modifier.padding(top = 16.dp)
 
                             when (searchResult) {
                                 is SearchResult.SearchEvent -> SearchEventView(
                                     modifier = itemModifier,
                                     searchEvent = searchResult,
-                                    onClickCard = {}
+                                    onClickCard = { onClickCard(searchResult) }
                                 )
                                 is SearchResult.SearchPlayer -> SearchPlayerView(
                                     modifier = itemModifier,
                                     searchPlayer = searchResult,
-                                    onClickCard = {}
+                                    onClickCard = { onClickCard(searchResult) }
                                 )
                                 is SearchResult.SearchSeries -> SearchSeriesView(
                                     modifier = itemModifier,
                                     searchSeries = searchResult,
-                                    onClickCard = {}
+                                    onClickCard = { onClickCard(searchResult) }
                                 )
                                 is SearchResult.SearchTeam -> SearchTeamView(
                                     modifier = itemModifier,
                                     searchTeam = searchResult,
-                                    onClickCard = {}
+                                    onClickCard = { onClickCard(searchResult) }
                                 )
                             }
                         }
