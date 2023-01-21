@@ -31,10 +31,6 @@ class SearchViewModel @Inject constructor(
                 }
             }.collect()
     }
-
-    fun onClickCard(searchResult: SearchResult) {
-
-    }
 }
 
 sealed interface SearchListUiState {

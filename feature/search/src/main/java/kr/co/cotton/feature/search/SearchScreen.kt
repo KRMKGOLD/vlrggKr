@@ -107,7 +107,7 @@ fun SearchScreen(
                 keyboardActions = KeyboardActions(
                     onSearch = { onClickSearchButton(searchQuery) }
                 ),
-                maxLines = 1,
+                maxLines = 1
             )
             Divider(
                 modifier = Modifier.padding(top = 16.dp),
