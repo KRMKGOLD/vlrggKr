@@ -7,11 +7,14 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -82,7 +85,14 @@ fun SearchScreen(
                         imageVector = Icons.Filled.Search,
                         contentDescription = null
                     )
-                }
+                },
+                keyboardOptions = KeyboardOptions(
+                    imeAction = ImeAction.Search
+                ),
+                keyboardActions = KeyboardActions(
+                    onSearch = { onClickSearchButton(searchQuery) }
+                ),
+                maxLines = 1,
             )
             Divider(
                 modifier = Modifier.padding(top = 16.dp),
@@ -90,12 +100,17 @@ fun SearchScreen(
             )
             Text(
                 modifier = Modifier.padding(top = 8.dp),
-                text = "FOUND 0 RESULTS",
+                text = when (searchListUiState) {
+                    is SearchListUiState.Success -> {
+                        "FOUND ${searchListUiState.news.size} RESULTS"
+                    }
+                    else -> "FOUND 0 RESULTS"
+                },
                 style = MaterialTheme.typography.labelMedium
             )
             LazyColumn(
                 modifier = Modifier
-                    .padding(top = 8.dp)
+                    .padding(vertical = 8.dp)
                     .fillMaxSize()
             ) {
                 when (searchListUiState) {
