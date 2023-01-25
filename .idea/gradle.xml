@@ -20,6 +20,7 @@
             <option value="$PROJECT_DIR$/feature" />
             <option value="$PROJECT_DIR$/feature/home" />
             <option value="$PROJECT_DIR$/feature/news" />
+            <option value="$PROJECT_DIR$/feature/newsdetail" />
             <option value="$PROJECT_DIR$/feature/search" />
           </set>
         </option>
