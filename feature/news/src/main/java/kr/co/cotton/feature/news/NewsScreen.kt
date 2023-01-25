@@ -30,7 +30,7 @@ import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import com.murgupluoglu.flagkit.FlagKit
-import kr.co.cotton.core.data.sportsnews.model.ValEsportsNews
+import kr.co.cotton.core.data.sportsnews.model.News
 import kr.co.cotton.core.designsystem.component.common.CottonCard
 import kr.co.cotton.core.designsystem.component.common.CottonLoadingView
 import kr.co.cotton.core.designsystem.component.common.CottonScaffold
@@ -67,8 +67,8 @@ internal fun NewsRoute(
 fun NewsScreen(
     modifier: Modifier = Modifier,
     navController: NavHostController,
-    esportsNewsPagingList: LazyPagingItems<ValEsportsNews>,
-    onClickItem: (ValEsportsNews) -> Unit
+    esportsNewsPagingList: LazyPagingItems<News>,
+    onClickItem: (News) -> Unit
 ) {
     val state = rememberLazyListState()
 
@@ -125,8 +125,8 @@ fun NewsScreen(
 @Composable
 fun NewsCard(
     modifier: Modifier = Modifier,
-    news: ValEsportsNews,
-    onClickCard: (ValEsportsNews) -> Unit = {}
+    news: News,
+    onClickCard: (News) -> Unit = {}
 ) {
 
     val flag = news.flagISO?.let { FlagKit.getResId(LocalContext.current, it) }
@@ -209,7 +209,7 @@ fun NewsCard(
 fun NewsCardPreview() {
     CottonTheme {
         NewsCard(
-            news = ValEsportsNews(
+            news = News(
                 title = "Gen.G reveal all-Korean roster",
                 description = "VLR.gg's roster tracker keeps up to date on roster moves in the Pacific region in view of the upcome asdfasdfasdfasdfasdfasdfasdf",
                 flagISO = "KR",

@@ -1,13 +1,13 @@
 package kr.co.cotton.core.data.sportsnews.datasource
 
 import android.util.Log
-import kr.co.cotton.core.data.sportsnews.model.ValEsportsNews
+import kr.co.cotton.core.data.sportsnews.model.News
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.TextNode
 import javax.inject.Inject
 
-class RemoteValEsportsNewsDataSource @Inject constructor() : ValEsportsNewsDataSource {
+class RemoteNewsDataSource @Inject constructor() : NewsDataSource {
 
     override fun getNewsMaxIndex(): Int {
         try {
@@ -21,7 +21,7 @@ class RemoteValEsportsNewsDataSource @Inject constructor() : ValEsportsNewsDataS
         }
     }
 
-    override fun getValEsportsNews(page: Int): List<ValEsportsNews> {
+    override fun getValEsportsNews(page: Int): List<News> {
         try {
             val valEsportsNewsUrl = "https://www.vlr.gg/news/?page=${page}"
             val valEsportsNewsDoc = Jsoup.connect(valEsportsNewsUrl).get()
@@ -33,7 +33,7 @@ class RemoteValEsportsNewsDataSource @Inject constructor() : ValEsportsNewsDataS
         }
     }
 
-    override fun updateValEsportsNews(page: Int, value: List<ValEsportsNews>) {
+    override fun updateValEsportsNews(page: Int, value: List<News>) {
         throw NotImplementedError()
     }
 
@@ -45,9 +45,9 @@ class RemoteValEsportsNewsDataSource @Inject constructor() : ValEsportsNewsDataS
         return valEsportsLastIndex ?: 1
     }
 
-    private fun getValEsportsNewsWithDoc(document: Document): List<ValEsportsNews> {
+    private fun getValEsportsNewsWithDoc(document: Document): List<News> {
         val valEsportsNewsElement = document.select("div.wf-card a")
-        val valEsportsNewsList = mutableListOf<ValEsportsNews>()
+        val newsList = mutableListOf<News>()
 
         for (news in valEsportsNewsElement) {
             val newsInfoList = news.select("div div")
@@ -65,8 +65,8 @@ class RemoteValEsportsNewsDataSource @Inject constructor() : ValEsportsNewsDataS
                     (it as? TextNode)?.text()
                 }
 
-            valEsportsNewsList.add(
-                ValEsportsNews(
+            newsList.add(
+                News(
                     href = href,
                     url = url,
                     title = title,
@@ -80,6 +80,6 @@ class RemoteValEsportsNewsDataSource @Inject constructor() : ValEsportsNewsDataS
             Log.d("valEsportsNewsList", "${title}")
         }
 
-        return valEsportsNewsList
+        return newsList
     }
 }

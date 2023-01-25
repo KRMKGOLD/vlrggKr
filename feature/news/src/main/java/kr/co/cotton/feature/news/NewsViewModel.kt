@@ -8,13 +8,12 @@ import kotlinx.coroutines.launch
 import kr.co.cotton.core.common.Result
 import kr.co.cotton.core.common.asResult
 import kr.co.cotton.core.common.base.BaseViewModel
-import kr.co.cotton.core.data.sportsnews.model.ValEsportsNews
-import kr.co.cotton.core.data.sportsnews.repository.ValEsportsNewsRepository
+import kr.co.cotton.core.data.sportsnews.repository.NewsRepository
 import javax.inject.Inject
 
 @HiltViewModel
 class NewsViewModel @Inject constructor(
-    private val newsRepository: ValEsportsNewsRepository
+    private val newsRepository: NewsRepository
 ) : BaseViewModel() {
 
     private val _maxNewsIndex = MutableStateFlow(0)
