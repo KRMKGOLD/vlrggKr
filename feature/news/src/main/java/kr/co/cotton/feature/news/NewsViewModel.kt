@@ -20,7 +20,7 @@ class NewsViewModel @Inject constructor(
 
     private val currentIndex = MutableStateFlow(1)
 
-    val newsListFlow = newsRepository.getValEsportsNews().cachedIn(viewModelScope)
+    val newsListFlow = newsRepository.getNewsList().cachedIn(viewModelScope)
 
     init {
         getNewsMaxIndex()

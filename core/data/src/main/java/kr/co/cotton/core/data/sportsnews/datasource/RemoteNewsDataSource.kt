@@ -21,7 +21,7 @@ class RemoteNewsDataSource @Inject constructor() : NewsDataSource {
         }
     }
 
-    override fun getValEsportsNews(page: Int): List<News> {
+    override fun getNewsList(page: Int): List<News> {
         try {
             val valEsportsNewsUrl = "https://www.vlr.gg/news/?page=${page}"
             val valEsportsNewsDoc = Jsoup.connect(valEsportsNewsUrl).get()
@@ -33,7 +33,7 @@ class RemoteNewsDataSource @Inject constructor() : NewsDataSource {
         }
     }
 
-    override fun updateValEsportsNews(page: Int, value: List<News>) {
+    override fun updateNewsList(page: Int, value: List<News>) {
         throw NotImplementedError()
     }
 

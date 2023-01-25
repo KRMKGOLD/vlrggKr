@@ -14,11 +14,11 @@ class LocalNewsDataSource @Inject constructor() : NewsDataSource {
         throw NotImplementedError()
     }
 
-    override fun getValEsportsNews(page: Int): List<News> {
+    override fun getNewsList(page: Int): List<News> {
         return newsMap.value[page] ?: emptyList()
     }
 
-    override fun updateValEsportsNews(page: Int, value: List<News>) {
+    override fun updateNewsList(page: Int, value: List<News>) {
         newsMap.update {
             it[page] = value
             it

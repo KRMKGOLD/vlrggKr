@@ -8,5 +8,5 @@ interface NewsRepository {
 
     fun getNewsMaxIndex(): Flow<Int>
 
-    fun getValEsportsNews(): Flow<PagingData<News>>
+    fun getNewsList(): Flow<PagingData<News>>
 }

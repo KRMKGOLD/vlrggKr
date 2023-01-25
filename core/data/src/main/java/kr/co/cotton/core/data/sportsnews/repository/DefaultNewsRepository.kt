@@ -19,7 +19,7 @@ class DefaultNewsRepository @Inject constructor(
         emit(remoteNewsDataSource.getNewsMaxIndex())
     }.flowOn(Dispatchers.IO)
 
-    override fun getValEsportsNews(): Flow<PagingData<News>> {
+    override fun getNewsList(): Flow<PagingData<News>> {
         return Pager(PagingConfig(10)) {
             NewsPagingSource(
                 remoteNewsDataSource,

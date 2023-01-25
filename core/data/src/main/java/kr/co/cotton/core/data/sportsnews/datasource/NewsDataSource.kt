@@ -6,7 +6,7 @@ interface NewsDataSource {
 
     fun getNewsMaxIndex(): Int
 
-    fun getValEsportsNews(page: Int): List<News>
+    fun getNewsList(page: Int): List<News>
 
-    fun updateValEsportsNews(page: Int, value: List<News>)
+    fun updateNewsList(page: Int, value: List<News>)
 }

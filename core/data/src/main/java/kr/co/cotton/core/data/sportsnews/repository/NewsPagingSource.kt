@@ -25,10 +25,10 @@ class NewsPagingSource(
             val page = params.key ?: 1
 
             withContext(Dispatchers.IO) {
-                val cached = localNewsDataSource.getValEsportsNews(page)
+                val cached = localNewsDataSource.getNewsList(page)
                 val data = cached.ifEmpty {
-                    val remote = remoteNewsDataSource.getValEsportsNews(page)
-                    localNewsDataSource.updateValEsportsNews(page, remote)
+                    val remote = remoteNewsDataSource.getNewsList(page)
+                    localNewsDataSource.updateNewsList(page, remote)
                     remote
                 }
 
