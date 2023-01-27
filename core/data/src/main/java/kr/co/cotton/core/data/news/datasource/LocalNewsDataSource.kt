@@ -1,8 +1,8 @@
-package kr.co.cotton.core.data.sportsnews.datasource
+package kr.co.cotton.core.data.news.datasource
 
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
-import kr.co.cotton.core.data.sportsnews.model.News
+import kr.co.cotton.core.data.news.model.News
 import javax.inject.Inject
 
 class LocalNewsDataSource @Inject constructor() : NewsDataSource {

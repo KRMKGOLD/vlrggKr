@@ -1,12 +1,12 @@
-package kr.co.cotton.core.data.sportsnews.repository
+package kr.co.cotton.core.data.news.repository
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
-import kr.co.cotton.core.data.sportsnews.model.News
-import kr.co.cotton.core.data.sportsnews.datasource.NewsDataSource
+import kr.co.cotton.core.data.news.model.News
+import kr.co.cotton.core.data.news.datasource.NewsDataSource
 import javax.inject.Inject
 import javax.inject.Named
 

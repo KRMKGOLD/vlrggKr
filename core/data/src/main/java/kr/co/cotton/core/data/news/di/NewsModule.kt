@@ -1,14 +1,14 @@
-package kr.co.cotton.core.data.sportsnews.di
+package kr.co.cotton.core.data.news.di
 
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import kr.co.cotton.core.data.sportsnews.datasource.LocalNewsDataSource
-import kr.co.cotton.core.data.sportsnews.datasource.RemoteNewsDataSource
-import kr.co.cotton.core.data.sportsnews.datasource.NewsDataSource
-import kr.co.cotton.core.data.sportsnews.repository.DefaultNewsRepository
-import kr.co.cotton.core.data.sportsnews.repository.NewsRepository
+import kr.co.cotton.core.data.news.datasource.LocalNewsDataSource
+import kr.co.cotton.core.data.news.datasource.RemoteNewsDataSource
+import kr.co.cotton.core.data.news.datasource.NewsDataSource
+import kr.co.cotton.core.data.news.repository.DefaultNewsRepository
+import kr.co.cotton.core.data.news.repository.NewsRepository
 import javax.inject.Named
 import javax.inject.Singleton
 

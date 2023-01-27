@@ -8,7 +8,7 @@ import kotlinx.coroutines.launch
 import kr.co.cotton.core.common.Result
 import kr.co.cotton.core.common.asResult
 import kr.co.cotton.core.common.base.BaseViewModel
-import kr.co.cotton.core.data.sportsnews.repository.NewsRepository
+import kr.co.cotton.core.data.news.repository.NewsRepository
 import javax.inject.Inject
 
 @HiltViewModel

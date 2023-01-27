@@ -1,12 +1,12 @@
-package kr.co.cotton.core.data.sportsnews.repository
+package kr.co.cotton.core.data.news.repository
 
 import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import kr.co.cotton.core.data.sportsnews.model.News
-import kr.co.cotton.core.data.sportsnews.datasource.NewsDataSource
+import kr.co.cotton.core.data.news.model.News
+import kr.co.cotton.core.data.news.datasource.NewsDataSource
 
 class NewsPagingSource(
     private val remoteNewsDataSource: NewsDataSource,

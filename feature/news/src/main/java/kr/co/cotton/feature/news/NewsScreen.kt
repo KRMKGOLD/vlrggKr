@@ -30,7 +30,7 @@ import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import com.murgupluoglu.flagkit.FlagKit
-import kr.co.cotton.core.data.sportsnews.model.News
+import kr.co.cotton.core.data.news.model.News
 import kr.co.cotton.core.designsystem.component.common.CottonCard
 import kr.co.cotton.core.designsystem.component.common.CottonLoadingView
 import kr.co.cotton.core.designsystem.component.common.CottonScaffold
