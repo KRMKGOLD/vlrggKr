@@ -17,7 +17,7 @@ import javax.inject.Singleton
 interface NewsModule {
 
     @Binds
-    fun bindsValEsportsNewsRepository(
+    fun bindValEsportsNewsRepository(
         defaultNewsRepository: DefaultNewsRepository
     ): NewsRepository
 

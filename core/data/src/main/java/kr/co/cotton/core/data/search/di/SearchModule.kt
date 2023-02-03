@@ -21,7 +21,7 @@ interface SearchModule {
     ): SearchDataSource
 
     @Binds
-    fun bindsSearchRepository(
+    fun bindSearchRepository(
         searchRepository: DefaultSearchRepository
     ): SearchRepository
 }
