@@ -1,4 +1,4 @@
-package kr.co.cotton.feature.newsdetail
+package kr.co.cotton.feature.detailnews
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("kr.co.cotton.feature.newsdetail.test", appContext.packageName)
+        assertEquals("kr.co.cotton.feature.detailnews.test", appContext.packageName)
     }
 }
