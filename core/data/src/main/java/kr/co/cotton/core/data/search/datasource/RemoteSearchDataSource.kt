@@ -11,7 +11,7 @@ class RemoteSearchDataSource @Inject constructor() : SearchDataSource {
         "https://www.vlr.gg/search/?q=${query}&type=${category}"
 
     override fun getAllSearchData(query: String): List<SearchResult> {
-        return getSearcResultWithCategoryStr(query, "all")
+        return getSearchResultWithCategoryStr(query, "all")
     }
 
     override fun getSearchDataWithCategory(
@@ -20,21 +20,21 @@ class RemoteSearchDataSource @Inject constructor() : SearchDataSource {
     ): List<SearchResult> {
         return when (category) {
             is SearchResult.SearchTeam -> {
-                getSearcResultWithCategoryStr(query, "teams")
+                getSearchResultWithCategoryStr(query, "teams")
             }
             is SearchResult.SearchPlayer -> {
-                getSearcResultWithCategoryStr(query, "players")
+                getSearchResultWithCategoryStr(query, "players")
             }
             is SearchResult.SearchEvent -> {
-                getSearcResultWithCategoryStr(query, "events")
+                getSearchResultWithCategoryStr(query, "events")
             }
             is SearchResult.SearchSeries -> {
-                getSearcResultWithCategoryStr(query, "series")
+                getSearchResultWithCategoryStr(query, "series")
             }
         }
     }
 
-    private fun getSearcResultWithCategoryStr(query: String, category: String): List<SearchResult> {
+    private fun getSearchResultWithCategoryStr(query: String, category: String): List<SearchResult> {
         try {
             val url = getUrl(query, category)
             val doc = Jsoup.connect(url).get()
