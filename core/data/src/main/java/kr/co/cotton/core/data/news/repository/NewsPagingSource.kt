@@ -1,34 +1,34 @@
-package kr.co.cotton.core.data.sportsnews.repository
+package kr.co.cotton.core.data.news.repository
 
 import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import kr.co.cotton.core.data.sportsnews.model.ValEsportsNews
-import kr.co.cotton.core.data.sportsnews.datasource.ValEsportsNewsDataSource
+import kr.co.cotton.core.data.news.model.News
+import kr.co.cotton.core.data.news.datasource.NewsDataSource
 
-class VlrEsportsNewsPagingSource(
-    private val remoteValEsportsNewsDataSource: ValEsportsNewsDataSource,
-    private val localValEsportsNewsDataSource: ValEsportsNewsDataSource,
-) : PagingSource<Int, ValEsportsNews>() {
+class NewsPagingSource(
+    private val remoteNewsDataSource: NewsDataSource,
+    private val localNewsDataSource: NewsDataSource,
+) : PagingSource<Int, News>() {
 
-    override fun getRefreshKey(state: PagingState<Int, ValEsportsNews>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, News>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             val anchorPage = state.closestPageToPosition(anchorPosition)
             anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
         }
     }
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ValEsportsNews> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, News> {
         return try {
             val page = params.key ?: 1
 
             withContext(Dispatchers.IO) {
-                val cached = localValEsportsNewsDataSource.getValEsportsNews(page)
+                val cached = localNewsDataSource.getNewsList(page)
                 val data = cached.ifEmpty {
-                    val remote = remoteValEsportsNewsDataSource.getValEsportsNews(page)
-                    localValEsportsNewsDataSource.updateValEsportsNews(page, remote)
+                    val remote = remoteNewsDataSource.getNewsList(page)
+                    localNewsDataSource.updateNewsList(page, remote)
                     remote
                 }
 
