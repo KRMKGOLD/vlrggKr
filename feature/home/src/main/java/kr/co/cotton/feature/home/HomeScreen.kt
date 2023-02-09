@@ -22,6 +22,17 @@ import kr.co.cotton.feature.news.navigation.navigateToNews
 import kr.co.cotton.feature.search.navigation.navigateToSearch
 
 @Composable
+fun HomeRoute(
+    modifier: Modifier = Modifier,
+    navController: NavHostController
+) {
+    HomeScreen(
+        modifier = modifier,
+        navController = navController
+    )
+}
+
+@Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
     navController: NavHostController
