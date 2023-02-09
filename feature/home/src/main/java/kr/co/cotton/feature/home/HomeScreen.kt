@@ -13,7 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
+import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import kr.co.cotton.core.designsystem.component.common.CottonScaffold
 import kr.co.cotton.core.designsystem.component.common.CottonTopBar
@@ -24,7 +24,7 @@ import kr.co.cotton.feature.search.navigation.navigateToSearch
 @Composable
 fun HomeRoute(
     modifier: Modifier = Modifier,
-    navController: NavHostController
+    navController: NavController
 ) {
     HomeScreen(
         modifier = modifier,
@@ -35,7 +35,7 @@ fun HomeRoute(
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
-    navController: NavHostController
+    navController: NavController
 ) {
 
     CottonScaffold(

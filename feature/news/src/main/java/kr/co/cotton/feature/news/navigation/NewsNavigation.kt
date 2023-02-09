@@ -2,7 +2,6 @@ package kr.co.cotton.feature.news.navigation
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
-import androidx.navigation.NavHostController
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import kr.co.cotton.feature.news.NewsRoute
@@ -13,7 +12,7 @@ fun NavController.navigateToNews(navOptions: NavOptions? = null) {
     this.navigate(newsRoute, navOptions)
 }
 
-fun NavGraphBuilder.newsScreen(navController: NavHostController) {
+fun NavGraphBuilder.newsScreen(navController: NavController) {
     composable(route = newsRoute) {
         NewsRoute(navController = navController)
     }
