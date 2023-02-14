@@ -17,7 +17,7 @@ import kr.co.cotton.core.data.detailnews.repository.DetailNewsRepository
 @HiltViewModel
 class DetailNewsViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
-    private val detailNewsRepository: DetailNewsRepository
+    private val detailNewsRepository: DetailNewsRepository,
 ) : BaseViewModel() {
 
     private val nId: String = checkNotNull(savedStateHandle["nId"])
@@ -27,12 +27,11 @@ class DetailNewsViewModel @Inject constructor(
     val detailNewsUiState: StateFlow<DetailNewsUiState> = _detailNewsUiState.asStateFlow()
 
     init {
-        nId + title
-//        getDetailNews(nId)
+        getDetailNews(nId, title)
     }
 
-    private fun getDetailNews(href: String) = viewModelScope.launch {
-        detailNewsRepository.getDetailNews(href).asResult()
+    private fun getDetailNews(nId: String, title: String) = viewModelScope.launch {
+        detailNewsRepository.getDetailNews(nId, title).asResult()
             .map { result ->
                 when (result) {
                     is Result.Success -> DetailNewsUiState.Success(result.data)
