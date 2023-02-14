@@ -8,17 +8,18 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import kr.co.cotton.feature.detailnews.DetailNewsRoute
 
-const val detailNewsRoute = "news/{href}"
+const val detailNewsRoute = "detailnews/{nId}/{title}"
 
-fun NavController.navigateToDetailNews(navOptions: NavOptions? = null) {
-    this.navigate(detailNewsRoute, navOptions)
+fun NavController.navigateToDetailNews(navOptions: NavOptions? = null, href: String) {
+    this.navigate("detailnews$href", navOptions)
 }
 
 fun NavGraphBuilder.detailNewsScreen(navController: NavController) {
     composable(
         route = detailNewsRoute,
         arguments = listOf(
-            navArgument("href") { type = NavType.StringType },
+            navArgument("nId") { type = NavType.StringType },
+            navArgument("title") { type = NavType.StringType },
         ),
     ) {
         DetailNewsRoute(navController = navController)

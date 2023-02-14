@@ -12,25 +12,25 @@ import kr.co.cotton.core.designsystem.component.theme.CottonTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CottonTopBar(
-    title: String,
+    title: String = "",
     onClickBackBtn: (() -> Unit)? = null,
-    onClickSearchBtn: (() -> Unit)? = null
+    onClickSearchBtn: (() -> Unit)? = null,
 ) {
     CenterAlignedTopAppBar(
         title = {
             Text(
                 text = title,
-                style = MaterialTheme.typography.titleMedium
+                style = MaterialTheme.typography.titleMedium,
             )
         },
         navigationIcon = {
             if (onClickBackBtn != null) {
                 IconButton(
-                    onClick = { onClickBackBtn() }
+                    onClick = { onClickBackBtn() },
                 ) {
                     Icon(
                         imageVector = Icons.Filled.ArrowBack,
-                        contentDescription = null
+                        contentDescription = null,
                     )
                 }
             }
@@ -38,15 +38,15 @@ fun CottonTopBar(
         actions = {
             if (onClickSearchBtn != null) {
                 IconButton(
-                    onClick = { onClickSearchBtn() }
+                    onClick = { onClickSearchBtn() },
                 ) {
                     Icon(
                         imageVector = Icons.Filled.Search,
-                        contentDescription = null
+                        contentDescription = null,
                     )
                 }
             }
-        }
+        },
     )
 }
 
@@ -64,7 +64,7 @@ fun CottonTopBarPreview2() {
     CottonTheme {
         CottonTopBar(
             title = "Test Title",
-            onClickBackBtn = { }
+            onClickBackBtn = { },
         )
     }
 }
