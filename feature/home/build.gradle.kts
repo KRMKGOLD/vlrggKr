@@ -53,6 +53,7 @@ dependencies {
     implementation(project(":core:designsystem"))
 
     implementation(project(":feature:news"))
+    implementation(project(":feature:detailnews"))
     implementation(project(":feature:search"))
 
     implementation(DependencyInfo.AndroidX.ktx)

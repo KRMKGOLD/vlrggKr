@@ -24,7 +24,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavHostController
+import androidx.navigation.NavController
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
@@ -40,7 +40,7 @@ import kr.co.cotton.core.designsystem.component.theme.CottonTheme
 @Composable
 internal fun NewsRoute(
     modifier: Modifier = Modifier,
-    navController: NavHostController,
+    navController: NavController,
     viewModel: NewsViewModel = hiltViewModel()
 ) {
     val lazyPagingItems = viewModel.newsListFlow.collectAsLazyPagingItems()
@@ -66,7 +66,7 @@ internal fun NewsRoute(
 @Composable
 fun NewsScreen(
     modifier: Modifier = Modifier,
-    navController: NavHostController,
+    navController: NavController,
     esportsNewsPagingList: LazyPagingItems<News>,
     onClickItem: (News) -> Unit
 ) {

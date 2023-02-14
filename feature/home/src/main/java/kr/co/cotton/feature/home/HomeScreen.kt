@@ -13,18 +13,30 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
+import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import kr.co.cotton.core.designsystem.component.common.CottonScaffold
 import kr.co.cotton.core.designsystem.component.common.CottonTopBar
 import kr.co.cotton.core.designsystem.component.theme.CottonTheme
+import kr.co.cotton.feature.detailnews.navigation.navigateToDetailNews
 import kr.co.cotton.feature.news.navigation.navigateToNews
 import kr.co.cotton.feature.search.navigation.navigateToSearch
 
 @Composable
+fun HomeRoute(
+    modifier: Modifier = Modifier,
+    navController: NavController,
+) {
+    HomeScreen(
+        modifier = modifier,
+        navController = navController,
+    )
+}
+
+@Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
-    navController: NavHostController
+    navController: NavController,
 ) {
 
     CottonScaffold(
@@ -33,20 +45,20 @@ fun HomeScreen(
             CottonTopBar(
                 title = "Vlr.gg Unoffical",
                 onClickBackBtn = { navController.popBackStack() },
-                onClickSearchBtn = { navController.navigateToSearch() }
+                onClickSearchBtn = { navController.navigateToSearch() },
             )
-        }
+        },
     ) {
         Column(
             modifier = modifier
                 .fillMaxSize()
-                .padding(16.dp)
+                .padding(16.dp),
         ) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 16.dp),
-                horizontalArrangement = Arrangement.SpaceBetween
+                horizontalArrangement = Arrangement.SpaceBetween,
             ) {
                 Button(
                     modifier = Modifier
@@ -57,7 +69,7 @@ fun HomeScreen(
                     content = {
                         Text(text = "News")
                     },
-                    onClick = { navController.navigateToNews() }
+                    onClick = { navController.navigateToNews() },
                 )
                 Button(
                     modifier = Modifier
@@ -68,14 +80,14 @@ fun HomeScreen(
                     content = {
                         Text(text = "Matches")
                     },
-                    onClick = { navController.navigate("matches") }
+                    onClick = { navController.navigate("matches") },
                 )
             }
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 16.dp),
-                horizontalArrangement = Arrangement.SpaceBetween
+                horizontalArrangement = Arrangement.SpaceBetween,
             ) {
                 Button(
                     modifier = Modifier
@@ -86,7 +98,7 @@ fun HomeScreen(
                     content = {
                         Text(text = "Search")
                     },
-                    onClick = { navController.navigate("search") }
+                    onClick = { navController.navigate("search") },
                 )
                 Button(
                     modifier = Modifier
@@ -97,7 +109,7 @@ fun HomeScreen(
                     content = {
                         Text(text = "NOTHING")
                     },
-                    onClick = {}
+                    onClick = { navController.navigateToDetailNews(href = "/171836/nrg-and-giants-stun-opponents-in-s-o-paulo-openers") },
                 )
             }
         }

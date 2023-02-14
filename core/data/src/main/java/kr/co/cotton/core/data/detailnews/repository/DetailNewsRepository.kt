@@ -4,5 +4,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface DetailNewsRepository {
 
-    fun getDetailNews(href: String): Flow<String>
+    fun getDetailNews(nId: String, title: String): Flow<String>
 }

@@ -10,7 +10,7 @@ import kr.co.cotton.vlrggaos.navigation.MainNavHost
 
 @Composable
 fun MainScreen(
-    navController: NavHostController = rememberNavController()
+    navController: NavHostController = rememberNavController(),
 ) {
     Column(modifier = Modifier.fillMaxSize()) {
         MainNavHost(navController = navController)

@@ -63,6 +63,7 @@ dependencies {
 
     implementation(project(":feature:home"))
     implementation(project(":feature:news"))
+    implementation(project(":feature:detailnews"))
     implementation(project(":feature:search"))
 
     implementation(DependencyInfo.AndroidX.ktx)
@@ -73,11 +74,11 @@ dependencies {
     implementation(DependencyInfo.AndroidX.Compose.material3)
     implementation(DependencyInfo.AndroidX.Compose.preview)
     implementation(DependencyInfo.AndroidX.Compose.compose)
-    debugImplementation(DependencyInfo.AndroidX.Compose.tool)
-    debugImplementation(DependencyInfo.AndroidX.Compose.manifest)
-    debugImplementation(DependencyInfo.AndroidX.Compose.navigation)
-    debugImplementation(DependencyInfo.AndroidX.Compose.lifecycle)
-    debugImplementation(DependencyInfo.AndroidX.Compose.lifecycleViewModel)
+    implementation(DependencyInfo.AndroidX.Compose.tool)
+    implementation(DependencyInfo.AndroidX.Compose.manifest)
+    implementation(DependencyInfo.AndroidX.Compose.navigation)
+    implementation(DependencyInfo.AndroidX.Compose.lifecycle)
+    implementation(DependencyInfo.AndroidX.Compose.lifecycleViewModel)
 
     testImplementation(DependencyInfo.Test.junit)
     androidTestImplementation(DependencyInfo.AndroidX.junit)

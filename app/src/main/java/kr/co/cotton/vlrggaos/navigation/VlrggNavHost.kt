@@ -2,9 +2,11 @@ package kr.co.cotton.vlrggaos.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import kr.co.cotton.feature.detailnews.navigation.detailNewsScreen
 import kr.co.cotton.feature.home.navigation.homeRoute
 import kr.co.cotton.feature.home.navigation.homeScreen
 import kr.co.cotton.feature.news.navigation.newsScreen
@@ -22,6 +24,7 @@ fun MainNavHost(
     ) {
         homeScreen(navController)
         newsScreen(navController)
+        detailNewsScreen(navController)
         searchScreen(navController)
         composable("matches") {
             // TODO : MatchesScreen
