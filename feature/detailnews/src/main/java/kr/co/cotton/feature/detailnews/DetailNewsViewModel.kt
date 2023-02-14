@@ -7,6 +7,7 @@ import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import kr.co.cotton.core.common.Result
@@ -33,12 +34,12 @@ class DetailNewsViewModel @Inject constructor(
     private fun getDetailNews(nId: String, title: String) = viewModelScope.launch {
         detailNewsRepository.getDetailNews(nId, title).asResult()
             .map { result ->
-                when (result) {
+                _detailNewsUiState.value = when (result) {
                     is Result.Success -> DetailNewsUiState.Success(result.data)
                     is Result.Loading -> DetailNewsUiState.Loading
                     is Result.Error -> DetailNewsUiState.Loading
                 }
-            }
+            }.collect()
     }
 }
 
